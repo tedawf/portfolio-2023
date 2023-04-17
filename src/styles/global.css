@@ -130,7 +130,7 @@ h6 {
   --transition-squish-fast: var(--_tspeed_fast) var(--_ttiming_squish);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --bkg: var(--bkg--dark);
     --txt: var(--txt--dark);
