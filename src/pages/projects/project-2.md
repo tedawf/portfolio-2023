@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/ProjectLayout.astro"
 title: Why is this CSS so weird?
 date: 2022-12-09
 author: Anna Dixon
@@ -8,7 +9,7 @@ image: {
 }
 description: The global css file for this site is a bit different than I’d write things normally, but I’m trying to keep you from having to write a bunch of random classes.
 draft: false
-category: CSS
+category: [CSS]
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui aliqua nulla esse cillum laborum aliquip nulla elit. Id id Lorem duis irure cillum culpa. Nulla sint et aliqua velit do. Nulla sit sit proident consectetur enim ullamco aliqua in reprehenderit ullamco officia.

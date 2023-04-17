@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/ProjectLayout.astro"
 title: Building an Astro Post Tag Component
 date: 2022-12-06
 author: Anna Dixon
@@ -8,7 +9,7 @@ image: {
 }
 description: In this project, we’ll build out a custom Astro component for post tags.
 draft: false
-category: Astro
+category: [Astro]
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui aliqua nulla esse cillum laborum aliquip nulla elit. Id id Lorem duis irure cillum culpa. Nulla sint et aliqua velit do. Nulla sit sit proident consectetur enim ullamco aliqua in reprehenderit ullamco officia.

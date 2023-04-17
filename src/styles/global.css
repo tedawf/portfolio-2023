@@ -458,7 +458,6 @@ button {
   text-transform: uppercase;
   font-size: var(--fs-sm);
 
-
   &:hover {
     color: hsl(var(--muted));
     opacity: 0.8;

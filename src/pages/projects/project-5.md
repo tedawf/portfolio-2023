@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/ProjectLayout.astro"
 title: A Post about Important Items Of Life
 date: 2022-11-20
 author: Darnell McClure
@@ -8,7 +9,7 @@ image: {
 }
 description: Have you ever wondered what the most important items of life are? Well, wonder no more!
 draft: false
-category: Reference Docs
+category: [Docs]
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui aliqua nulla esse cillum laborum aliquip nulla elit. Id id Lorem duis irure cillum culpa. Nulla sint et aliqua velit do. Nulla sit sit proident consectetur enim ullamco aliqua in reprehenderit ullamco officia.
