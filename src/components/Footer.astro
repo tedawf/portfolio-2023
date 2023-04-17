@@ -1,0 +1,15 @@
+---
+---
+
+<footer>
+  <small>
+    Copyright &copy; <span id="copyright"></span> Ang Wei Feng (Ted) | All rights
+    reserved
+  </small>
+</footer>
+
+<script>
+  document.querySelector("#copyright")!.textContent = new Date()
+    .getFullYear()
+    .toString();
+</script>

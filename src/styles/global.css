@@ -1,4 +1,7 @@
-/* WARNING: This CSS is optimized for the tutorial, minimizing the classes you’ll need in the comnponents. In other words, it’s not really great CSS so that the tutorial can hopefully be great—but you’ll need to follow the markup exactly for things to work properly. It would need significant re-write to use in your own custom site. */
+/* WARNING: This CSS is optimized for the tutorial, minimizing the classes you’ll need in 
+the components. In other words, it’s not really great CSS so that the tutorial can 
+hopefully be great—but you’ll need to follow the markup exactly for things to work 
+properly. It would need significant re-write to use in your own custom site. */
 
 /* CSS RESET */
 *,
@@ -369,32 +372,32 @@ button {
 /* footer */
 
 :where(footer) {
-    width: 100%;
-    text-align: center;
-    padding: var(--space-sm);
-    background-color: hsl(var(--muted));
-    box-shadow: var(--shadow-lg);
+  width: 100%;
+  text-align: center;
+  padding: var(--space-sm);
+  background-color: hsl(var(--muted));
+  box-shadow: var(--shadow-lg);
 
-    & div {
-      display: grid;
-      place-items: center;
-      max-width: 1500px;
-      margin-inline: auto;
-      gap: var(--space-sm);
+  & div {
+    display: grid;
+    place-items: center;
+    max-width: 1500px;
+    margin-inline: auto;
+    gap: var(--space-sm);
 
-      @media --sm {
-        display: flex;
-        justify-content: space-between;
-      }
+    @media --sm {
+      display: flex;
+      justify-content: space-between;
+    }
 
-      & a {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        text-decoration: none;
-      }
+    & a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
     }
   }
+}
 
 /* about */
 .about {
@@ -538,7 +541,7 @@ header {
     margin-block-start: var(--space-xl);
 
     @media --md {
-      margin:0;
+      margin: 0;
     }
 
     & aside {
@@ -551,9 +554,10 @@ header {
       }
 
       @media --md {
-      text-align: left;
-      justify-content: start;
-      justify-items: start;
+        text-align: left;
+        justify-content: start;
+        justify-items: start;
+
         & .categories {
           justify-content: start;
         }
@@ -598,32 +602,33 @@ header {
   }
 }
 
-[aria-label="Blog categories"], [aria-label="Related posts"] {
-    padding: 0;
-    text-align: center;
-    display: grid;
-    gap: var(--space-sm);
-    justify-items: center;
+[aria-label="Blog categories"],
+[aria-label="Related posts"] {
+  padding: 0;
+  text-align: center;
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: center;
 
-    & .post {
-      background-color: hsl(var(--muted));
-      padding: var(--space-xs);
-      gap: var(--space-2xs);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-sm);
-      width: fit-content;
+  & .post {
+    background-color: hsl(var(--muted));
+    padding: var(--space-xs);
+    gap: var(--space-2xs);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    width: fit-content;
 
-      & a {
-        text-decoration: none;
-      }
+    & a {
+      text-decoration: none;
     }
   }
+}
 
 
-:where([aria-label="Blog categories"]){
+:where([aria-label="Blog categories"]) {
   margin-block-end: var(--space-lg);
 }
 
-.sidebar [aria-label="Blog categories"]{
+.sidebar [aria-label="Blog categories"] {
   margin-block: 0;
 }
