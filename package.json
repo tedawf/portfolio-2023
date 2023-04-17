@@ -2,6 +2,10 @@
   "name": "md-portfolio",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,6 +14,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.3.0"
+    "astro": "^2.3.0",
+    "postcss": "^8.4.22",
+    "postcss-preset-env": "^8.3.2"
   }
 }

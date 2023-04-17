@@ -1,5 +1,6 @@
 ---
 import MainHead from "../layouts/MainHead.astro";
+import "../styles/global.css";
 
 interface Props {
   title?: string;
@@ -8,7 +9,7 @@ interface Props {
 
 const {
   title = "My Astro Portfolio",
-  description = "Portfolio created with the Astro framework.",
+  description = "My personal portfolio created with the Astro framework.",
 } = Astro.props as Props;
 ---
 
