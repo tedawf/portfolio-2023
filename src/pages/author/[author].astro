@@ -1,0 +1,48 @@
+---
+import ProjectCard from "../../components/ProjectCard.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import filterProjects from "../../utils/filterProjects";
+import slugify from "../../utils/slugify";
+
+export async function getStaticPaths() {
+  const allProjects = await Astro.glob("../projects/*.md");
+  const filteredProjects = filterProjects(allProjects);
+
+  // Set can only contain unique elements
+  const allAuthors = [
+    ...new Set(
+      filteredProjects.map((project) => project.frontmatter.author).flat()
+    ),
+  ];
+
+  return allAuthors.map((author) => {
+    const authorProjects = filteredProjects.filter(
+      (project) => project.frontmatter.author === author
+    );
+    return {
+      params: { author: slugify(author) },
+      props: { authorName: author, projects: authorProjects },
+    };
+  });
+}
+
+const { author } = Astro.params;
+const { authorName, projects } = Astro.props;
+---
+
+<MainLayout title={authorName}>
+  <section class="container" aria-label={`Projects done by ${authorName}`}>
+    <h1 class="h1">Projects done by <span>{authorName}</span></h1>
+    <div class="post-container">
+      {
+        projects.map((project: any) => (
+          <ProjectCard
+            frontmatter={project.frontmatter}
+            url={project.url}
+            tagType="h2"
+          />
+        ))
+      }
+    </div>
+  </section>
+</MainLayout>

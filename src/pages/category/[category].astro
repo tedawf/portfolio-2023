@@ -1,0 +1,53 @@
+---
+import ProjectCard from "../../components/ProjectCard.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import filterProjects from "../../utils/filterProjects";
+import slugify from "../../utils/slugify";
+
+export async function getStaticPaths() {
+  return [
+    {
+      params: { category: slugify("Reference Docs") },
+      props: { name: "Reference Docs" },
+    },
+    {
+      params: { category: slugify("General") },
+      props: { name: "General" },
+    },
+    {
+      params: { category: slugify("CSS") },
+      props: { name: "CSS" },
+    },
+    {
+      params: { category: slugify("Astro") },
+      props: { name: "Astro" },
+    },
+  ];
+}
+
+const { category } = Astro.params;
+const { name } = Astro.props;
+
+const allProjects = await Astro.glob("../projects/*.md");
+const filteredProjects = filterProjects(allProjects);
+const categorisedProjects = filteredProjects.filter((project) =>
+  project.frontmatter.category.some((cat: string) => slugify(cat) == category)
+);
+---
+
+<MainLayout title={name}>
+  <section class="container" aria-label={`Projects using ${name}`}>
+    <h1 class="h1">Projects using <span>{name}</span></h1>
+    <div class="post-container">
+      {
+        categorisedProjects.map((project) => (
+          <ProjectCard
+            frontmatter={project.frontmatter}
+            url={project.url}
+            tagType="h2"
+          />
+        ))
+      }
+    </div>
+  </section>
+</MainLayout>
