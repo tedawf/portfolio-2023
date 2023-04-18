@@ -1,7 +1,4 @@
-/* WARNING: This CSS is optimized for the tutorial, minimizing the classes you’ll need in 
-the components. In other words, it’s not really great CSS so that the tutorial can 
-hopefully be great—but you’ll need to follow the markup exactly for things to work 
-properly. It would need significant re-write to use in your own custom site. */
+/* WARNING: This CSS is optimized for the tutorial, minimizing the classes you’ll need in the comnponents. In other words, it’s not really great CSS so that the tutorial can hopefully be great—but you’ll need to follow the markup exactly for things to work properly. It would need significant re-write to use in your own custom site. */
 
 /* CSS RESET */
 *,
@@ -457,6 +454,7 @@ button {
   letter-spacing: 0.054em;
   text-transform: uppercase;
   font-size: var(--fs-sm);
+
 
   &:hover {
     color: hsl(var(--muted));

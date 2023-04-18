@@ -8,7 +8,7 @@ image: {
   alt: "A picture of a coder",
 }
 description: This is a blog post about the JavaScript programming language. Like it, love it, hate it, it's here to stay.
-draft: true
+draft: false
 category: [Reference Docs, Astro]
 ---
 

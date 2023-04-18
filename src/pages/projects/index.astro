@@ -1,8 +1,10 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
+import filterProjects from "../../utils/filterProjects";
 
 const allProjects = await Astro.glob("./*.md");
+const filteredProjects = filterProjects(allProjects);
 ---
 
 <MainLayout title="My Projects">
@@ -10,7 +12,7 @@ const allProjects = await Astro.glob("./*.md");
     <h1 class="h1">My Projects</h1>
     <div class="post-container">
       {
-        allProjects.map((project) => (
+        filteredProjects.map((project) => (
           <ProjectCard
             frontmatter={project.frontmatter}
             url={project.url}
@@ -20,9 +22,4 @@ const allProjects = await Astro.glob("./*.md");
       }
     </div>
   </section>
-  <!-- <ProjectCard
-    frontmatter={allProjects[0].frontmatter}
-    url={allProjects[0].url}
-    tagType="h2"
-  /> -->
 </MainLayout>

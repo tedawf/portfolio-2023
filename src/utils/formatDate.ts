@@ -1,3 +1,2 @@
-export function formatDate(date: Date) {
-  return new Date(date).toLocaleDateString("en-SG");
-}
+
+export default (date: Date) => { return new Date(date).toLocaleDateString("en-SG"); }
