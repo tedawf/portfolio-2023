@@ -10,13 +10,22 @@ interface Props {
 }
 
 const {
-  title = "My Astro Portfolio",
-  description = "My personal portfolio created with the Astro framework.",
-} = Astro.props as Props;
+  title = "Ted's Portfolio",
+  description = "My personal portfolio created with the Astro framework",
+  image,
+  frontmatter,
+  robots,
+} = Astro.props;
 ---
 
 <html lang="en">
-  <MainHead title={title} description={description} />
+  <MainHead
+    title={title}
+    description={description}
+    {image}
+    {frontmatter}
+    {robots}
+  />
   <body>
     <Nav />
     <main>

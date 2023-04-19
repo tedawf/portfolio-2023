@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tedawf.com',
+  site: 'https://tedawf.com/',
   integrations: [image({
     serviceEntryPoint: '@astrojs/image/sharp'
   }), sitemap()]

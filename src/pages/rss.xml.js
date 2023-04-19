@@ -7,7 +7,7 @@ const posts = filterProjects(Object.values(postImportResult));
 export const get = () => rss({
   stylesheet: "/rss/styles.xsl",
   title: "Ted's Portfolio",
-  description: "A website displaying all of my developer work"
+  description: "My personal portfolio created with the Astro framework"
   , site: import.meta.env.SITE,
   items: posts.map((post) => ({
     link: post.url,

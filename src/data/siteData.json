@@ -1,0 +1,8 @@
+{
+  "title": "Ted's Portfolio",
+  "description": "My personal portfolio created with the Astro framework",
+  "image": {
+    "src": "/images/image-default.jpg",
+    "alt": "Ted's Portfolio"
+  }
+}
