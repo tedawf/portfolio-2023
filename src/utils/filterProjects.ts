@@ -1,5 +1,5 @@
 export default (
-  projects: any,
+  projects: any[],
   {
     filterDrafts = true,
     filterFutureDates = true,
@@ -8,7 +8,7 @@ export default (
   } = {}
 ) => {
   const filteredProjects = projects.reduce((acc: any, project: any) => {
-    const { date, draft } = project.frontmatter;
+    const { date, draft } = project.data;
 
     if (filterDrafts && draft) return acc;
 
@@ -22,8 +22,7 @@ export default (
   if (sortByDate) {
     // https://github.com/microsoft/TypeScript/issues/5710
     filteredProjects.sort(
-      (a: any, b: any) =>
-        +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date)
+      (a: any, b: any) => +new Date(b.data.date) - +new Date(a.data.date)
     );
   } else {
     filteredProjects.sort(() => Math.random() - 0.5);

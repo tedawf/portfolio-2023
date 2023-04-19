@@ -1,4 +1,5 @@
 ---
+import { CollectionEntry, getCollection } from "astro:content";
 import ProjectCard from "../../components/ProjectCard.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import filterProjects from "../../utils/filterProjects";
@@ -33,10 +34,11 @@ export async function getStaticPaths() {
 const { category } = Astro.params;
 const { name } = Astro.props;
 
-const allProjects = await Astro.glob("../projects/*.md");
-const filteredProjects = filterProjects(allProjects);
+const allProjects = await getCollection("projects");
+const filteredProjects: CollectionEntry<"projects">[] =
+  filterProjects(allProjects);
 const categorisedProjects = filteredProjects.filter((project: any) =>
-  project.frontmatter.category.some((cat: string) => slugify(cat) == category)
+  project.data.category.some((cat: string) => slugify(cat) == category)
 );
 ---
 
@@ -45,12 +47,8 @@ const categorisedProjects = filteredProjects.filter((project: any) =>
     <h1 class="h1">Projects using <span>{name}</span></h1>
     <div class="post-container">
       {
-        categorisedProjects.map((project: any) => (
-          <ProjectCard
-            frontmatter={project.frontmatter}
-            url={project.url}
-            tagType="h2"
-          />
+        categorisedProjects.map((project) => (
+          <ProjectCard data={project.data} url={project.slug} tagType="h2" />
         ))
       }
     </div>

@@ -1,24 +1,29 @@
 ---
+import { CollectionEntry, getCollection } from "astro:content";
 import filterProjects from "../utils/filterProjects";
 import slugify from "../utils/slugify";
 
-const allProjects = await Astro.glob("../pages/projects/*.md");
-const filteredProjects = filterProjects(allProjects);
+const allProjects = await getCollection("projects");
+const filteredProjects: CollectionEntry<"projects">[] =
+  filterProjects(allProjects);
 const allCategories = filteredProjects
   .map((project) =>
-    project.frontmatter.category.map((cat: string) => cat.toLowerCase())
+    project.data.category.map((cat: string) => cat.toLowerCase())
   )
   .flat();
 
-const processedCats = allCategories.reduce((acc, cat) => {
-  // Check if the category exists in acc
-  const value = acc[cat] || 0;
+const processedCats = allCategories.reduce(
+  (acc: { [key: string]: number }, cat) => {
+    // Check if the category exists in acc
+    const value = acc[cat] || 0;
 
-  return {
-    ...acc,
-    [cat]: value + 1,
-  };
-}, {});
+    return {
+      ...acc,
+      [cat]: value + 1,
+    };
+  },
+  {}
+);
 
 const { showCount } = Astro.props;
 ---

@@ -1,11 +1,15 @@
 ---
+import { CollectionEntry, getCollection } from "astro:content";
 import Link from "../components/Link.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import filterProjects from "../utils/filterProjects";
 
-const allProjects = await Astro.glob("./projects/*.md");
-const filteredProjects = filterProjects(allProjects, { limit: 3 });
+const allProjects = await getCollection("projects");
+const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
+  allProjects,
+  { limit: 3 }
+);
 ---
 
 <MainLayout title="Ted | Portfolio">
@@ -37,11 +41,7 @@ const filteredProjects = filterProjects(allProjects, { limit: 3 });
     <div class="post-container">
       {
         filteredProjects.map((project) => (
-          <ProjectCard
-            frontmatter={project.frontmatter}
-            url={project.url}
-            tagType="h3"
-          />
+          <ProjectCard data={project.data} url={project.slug} tagType="h3" />
         ))
       }
     </div>

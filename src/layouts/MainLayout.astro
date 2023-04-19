@@ -13,19 +13,13 @@ const {
   title = "Ted's Portfolio",
   description = "My personal portfolio created with the Astro framework",
   image,
-  frontmatter,
+  data,
   robots,
 } = Astro.props;
 ---
 
 <html lang="en">
-  <MainHead
-    title={title}
-    description={description}
-    {image}
-    {frontmatter}
-    {robots}
-  />
+  <MainHead title={title} description={description} {image} {data} {robots} />
   <body>
     <Nav />
     <main>

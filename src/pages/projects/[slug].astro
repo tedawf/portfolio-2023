@@ -1,0 +1,66 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import filterProjects from "../../utils/filterProjects";
+import MainLayout from "../../layouts/MainLayout.astro";
+import CategoryCloud from "../../components/CategoryCloud.astro";
+import RelatedProjects from "../../components/RelatedProjects.astro";
+import ProjectHeader from "../../components/ProjectHeader.astro";
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection("projects");
+  const filteredProjects: CollectionEntry<"projects">[] =
+    filterProjects(allProjects);
+
+  return filteredProjects.map((project) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+    },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { title, description, date, category, author, image } = project.data;
+
+const { Content } = await project.render();
+
+const allProjects = await getCollection("projects");
+const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
+  allProjects,
+  { sortByDate: false }
+);
+const relatedProjects = filteredProjects
+  .filter(
+    (project) =>
+      project.data.category.some((cat: any) => category.includes(cat)) &&
+      project.data.title !== title
+  )
+  .slice(0, 3);
+---
+
+<MainLayout {title} {description} {image} {project.data}>
+  <ProjectHeader {title} {date} {category} {author} {image} />
+  <div class="post-content">
+    <div class="content">
+      <Content />
+    </div>
+    <div class="sidebar">
+      <aside class="container" aria-label="Blog categories">
+        <h2 class="h3">Project Categories</h2>
+        <CategoryCloud />
+      </aside>
+      {
+        relatedProjects.length > 0 && (
+          <aside class="container" aria-label="Related posts">
+            <h2 class="h3">Related Projects</h2>
+            <RelatedProjects {relatedProjects} />
+          </aside>
+        )
+      }
+    </div>
+  </div>
+</MainLayout>

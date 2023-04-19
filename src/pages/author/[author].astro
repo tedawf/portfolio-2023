@@ -1,29 +1,34 @@
 ---
+import { CollectionEntry, getCollection } from "astro:content";
 import ProjectCard from "../../components/ProjectCard.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import filterProjects from "../../utils/filterProjects";
 import slugify from "../../utils/slugify";
 
 export async function getStaticPaths() {
-  const allProjects = await Astro.glob("../projects/*.md");
-  const filteredProjects = filterProjects(allProjects);
+  const allProjects = await getCollection("projects");
+  const filteredProjects: CollectionEntry<"projects">[] =
+    filterProjects(allProjects);
 
   // Set can only contain unique elements
   const allAuthors = [
-    ...new Set(
-      filteredProjects.map((project) => project.frontmatter.author).flat()
-    ),
+    ...new Set(filteredProjects.map((project) => project.data.author).flat()),
   ];
 
   return allAuthors.map((author) => {
     const authorProjects = filteredProjects.filter(
-      (project) => project.frontmatter.author === author
+      (project) => project.data.author === author
     );
     return {
       params: { author: slugify(author) },
       props: { authorName: author, projects: authorProjects },
     };
   });
+}
+
+interface Props {
+  projects: CollectionEntry<"projects">[];
+  authorName: string;
 }
 
 const { author } = Astro.params;
@@ -35,12 +40,8 @@ const { authorName, projects } = Astro.props;
     <h1 class="h1">Projects done by <span>{authorName}</span></h1>
     <div class="post-container">
       {
-        projects.map((project: any) => (
-          <ProjectCard
-            frontmatter={project.frontmatter}
-            url={project.url}
-            tagType="h2"
-          />
+        projects.map((project) => (
+          <ProjectCard data={project.data} url={project.slug} tagType="h2" />
         ))
       }
     </div>

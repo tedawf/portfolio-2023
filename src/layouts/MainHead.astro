@@ -1,7 +1,7 @@
 ---
 import Seo from "../components/Seo.astro";
 
-const { title, description, image, frontmatter, robots } = Astro.props;
+const { title, description, image, data, robots } = Astro.props;
 ---
 
 <head>
@@ -12,7 +12,7 @@ const { title, description, image, frontmatter, robots } = Astro.props;
   <title>{title}</title>
   <meta name="description" content={description} />
 
-  <Seo {title} {description} url={Astro.url} {image} {frontmatter} {robots} />
+  <Seo {title} {description} url={Astro.url} {image} {data} {robots} />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

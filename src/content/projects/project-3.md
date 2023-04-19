@@ -1,18 +1,16 @@
 ---
-layout: "../../layouts/ProjectLayout.astro"
-title: JavaScript SchmavaScript
-date: 2022-12-05
-author: Victoria Greenfelder
-image: {
-  src: "/images/project-5.jpg",
-  alt: "A picture of a coder",
-}
-description: This is a blog post about the JavaScript programming language. Like it, love it, hate it, it's here to stay.
+title: Beginning with CSS
+date: 2022-12-03
+author: Darnell McClure
+image: { src: "/images/project-3.jpg", alt: "A picture of a coder" }
+description: CSS is a great way to style your website. In fact, there are no alternatives! Learn how to use it here.
 draft: false
-category: [Reference Docs, Astro]
+category: [CSS]
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui aliqua nulla esse cillum laborum aliquip nulla elit. Id id Lorem duis irure cillum culpa. Nulla sint et aliqua velit do. Nulla sit sit proident consectetur enim ullamco aliqua in reprehenderit ullamco officia.
+
+## Well, then. Let’s talk.
 
 Ad ipsum velit sint enim exercitation mollit consequat elit mollit qui commodo aute. Laboris culpa voluptate aliquip incididunt duis. Cupidatat aliquip et sunt aute fugiat cupidatat irure voluptate. Occaecat officia et sunt.
 

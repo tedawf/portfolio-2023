@@ -9,13 +9,13 @@ const { relatedProjects } = Astro.props;
   relatedProjects.map((project: any) => (
     <div class="post">
       <h3 class="h4">
-        <a href={project.url}>{project.frontmatter.title}</a>
+        <a href={`/projects/${project.slug}`}>{project.data.title}</a>
       </h3>
       <small>
-        <a href={`/author/${slugify(project.frontmatter.author)}/`}>
-          {project.frontmatter.author}
+        <a href={`/author/${slugify(project.data.author)}/`}>
+          {project.data.author}
         </a>{" "}
-        • {formatDate(project.frontmatter.date)}
+        • {formatDate(project.data.date)}
       </small>
     </div>
   ))

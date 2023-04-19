@@ -1,13 +1,15 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
-import Pagination from "../../components/Pagination.astro";
+import { CollectionEntry, getCollection } from "astro:content";
 import CategoryCloud from "../../components/CategoryCloud.astro";
+import Pagination from "../../components/Pagination.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 import filterProjects from "../../utils/filterProjects";
 
 export async function getStaticPaths({ paginate }: any) {
-  const allProjects = await Astro.glob("./*.md");
-  const filteredProjects = filterProjects(allProjects);
+  const allProjects = await getCollection("projects");
+  const filteredProjects: CollectionEntry<"projects">[] =
+    filterProjects(allProjects);
 
   return paginate(filteredProjects, {
     pageSize: 2,
@@ -23,11 +25,7 @@ const { page } = Astro.props;
     <div class="post-container">
       {
         page.data.map((project: any) => (
-          <ProjectCard
-            frontmatter={project.frontmatter}
-            url={project.url}
-            tagType="h2"
-          />
+          <ProjectCard data={project.data} url={project.slug} tagType="h2" />
         ))
       }
     </div>
