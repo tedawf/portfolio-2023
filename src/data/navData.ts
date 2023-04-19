@@ -6,7 +6,7 @@ const navData = [
   {
     name: "Projects",
     path: "/projects/",
-  }
+  },
 ];
 
 export default navData;

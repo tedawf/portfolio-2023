@@ -1,9 +1,8 @@
-import siteData from "../data/siteData.json"
+import siteData from "../data/siteData.json";
 import slugify from "./slugify";
 
-
 export default function jsonLDGenerator({ type, post, url }: any) {
-  if (type === 'post') {
+  if (type === "post") {
     return `<script type="application/ld+json">
       {
         "@context": "https://schema.org",

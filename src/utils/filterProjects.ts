@@ -1,9 +1,13 @@
-import type { MarkdownInstance } from "astro";
-
-export default (projects: MarkdownInstance<Record<string, any>>[], {
-  filterDrafts = true, filterFutureDates = true, sortByDate = true, limit = undefined as number | undefined
-} = {}) => {
-  const filteredProjects = projects.reduce((acc, project) => {
+export default (
+  projects: any,
+  {
+    filterDrafts = true,
+    filterFutureDates = true,
+    sortByDate = true,
+    limit = undefined as number | undefined,
+  } = {}
+) => {
+  const filteredProjects = projects.reduce((acc: any, project: any) => {
     const { date, draft } = project.frontmatter;
 
     if (filterDrafts && draft) return acc;
@@ -13,11 +17,14 @@ export default (projects: MarkdownInstance<Record<string, any>>[], {
     acc.push(project);
 
     return acc;
-  }, [] as MarkdownInstance<Record<string, any>>[]);
+  }, []);
 
   if (sortByDate) {
     // https://github.com/microsoft/TypeScript/issues/5710
-    filteredProjects.sort((a: any, b: any) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date));
+    filteredProjects.sort(
+      (a: any, b: any) =>
+        +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date)
+    );
   } else {
     filteredProjects.sort(() => Math.random() - 0.5);
   }
@@ -27,4 +34,4 @@ export default (projects: MarkdownInstance<Record<string, any>>[], {
   }
 
   return filteredProjects;
-}
+};

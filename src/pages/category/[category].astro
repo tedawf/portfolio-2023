@@ -5,6 +5,7 @@ import filterProjects from "../../utils/filterProjects";
 import slugify from "../../utils/slugify";
 
 export async function getStaticPaths() {
+  // TODO: Make it like [author].astro
   return [
     {
       params: { category: slugify("Reference Docs") },
@@ -22,6 +23,10 @@ export async function getStaticPaths() {
       params: { category: slugify("Astro") },
       props: { name: "Astro" },
     },
+    {
+      params: { category: slugify("Docs") },
+      props: { name: "Docs" },
+    },
   ];
 }
 
@@ -30,7 +35,7 @@ const { name } = Astro.props;
 
 const allProjects = await Astro.glob("../projects/*.md");
 const filteredProjects = filterProjects(allProjects);
-const categorisedProjects = filteredProjects.filter((project) =>
+const categorisedProjects = filteredProjects.filter((project: any) =>
   project.frontmatter.category.some((cat: string) => slugify(cat) == category)
 );
 ---
@@ -40,7 +45,7 @@ const categorisedProjects = filteredProjects.filter((project) =>
     <h1 class="h1">Projects using <span>{name}</span></h1>
     <div class="post-container">
       {
-        categorisedProjects.map((project) => (
+        categorisedProjects.map((project: any) => (
           <ProjectCard
             frontmatter={project.frontmatter}
             url={project.url}
