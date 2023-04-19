@@ -1,7 +1,7 @@
-import rss from '@astrojs/rss';
+import rss, { pagesGlobToRssItems } from '@astrojs/rss';
 import filterProjects from "../utils/filterProjects";
 
-const postImportResult = import.meta.glob("./projects/**/*.md", { eager: true });
+const postImportResult = await pagesGlobToRssItems(import.meta.glob("./projects/**/*.md", { eager: true }));
 const posts = filterProjects(Object.values(postImportResult));
 
 export const get = () => rss({
