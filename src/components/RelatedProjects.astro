@@ -1,0 +1,22 @@
+---
+import formatDate from "../utils/formatDate";
+import slugify from "../utils/slugify";
+
+const { relatedProjects } = Astro.props;
+---
+
+{
+  relatedProjects.map((project: any) => (
+    <div class="post">
+      <h3 class="h4">
+        <a href={project.url}>{project.frontmatter.title}</a>
+      </h3>
+      <small>
+        <a href={`/author/${slugify(project.frontmatter.author)}/`}>
+          {project.frontmatter.author}
+        </a>{" "}
+        • {formatDate(project.frontmatter.date)}
+      </small>
+    </div>
+  ))
+}
