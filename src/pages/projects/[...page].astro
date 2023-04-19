@@ -1,8 +1,9 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
-import filterProjects from "../../utils/filterProjects";
 import Pagination from "../../components/Pagination.astro";
+import CategoryCloud from "../../components/CategoryCloud.astro";
+import filterProjects from "../../utils/filterProjects";
 
 export async function getStaticPaths({ paginate }: any) {
   const allProjects = await Astro.glob("./*.md");
@@ -14,7 +15,6 @@ export async function getStaticPaths({ paginate }: any) {
 }
 
 const { page } = Astro.props;
-console.log(page);
 ---
 
 <MainLayout title="My Projects">
@@ -32,5 +32,9 @@ console.log(page);
       }
     </div>
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+    <aside class="container" aria-label="Blog categories">
+      <h2 class="h3">Project Categories</h2>
+      <CategoryCloud showCount={true} />
+    </aside>
   </section>
 </MainLayout>
