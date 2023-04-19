@@ -7,28 +7,27 @@ import slugify from "../../utils/slugify";
 
 export async function getStaticPaths() {
   // TODO: Make it like [author].astro
-  return [
-    {
-      params: { category: slugify("Reference Docs") },
-      props: { name: "Reference Docs" },
-    },
-    {
-      params: { category: slugify("General") },
-      props: { name: "General" },
-    },
-    {
-      params: { category: slugify("CSS") },
-      props: { name: "CSS" },
-    },
-    {
-      params: { category: slugify("Astro") },
-      props: { name: "Astro" },
-    },
-    {
-      params: { category: slugify("Docs") },
-      props: { name: "Docs" },
-    },
+
+  const allProjects = await getCollection("projects");
+  const filteredProjects: CollectionEntry<"projects">[] =
+    filterProjects(allProjects);
+
+  const allCategories = [
+    ...new Set(
+      filteredProjects
+        .map((project) => {
+          return project.data.category;
+        })
+        .flat()
+    ),
   ];
+
+  return allCategories.map((cat) => {
+    return {
+      params: { category: slugify(cat) },
+      props: { name: cat },
+    };
+  });
 }
 
 const { category } = Astro.params;
