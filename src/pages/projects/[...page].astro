@@ -2,9 +2,19 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import filterProjects from "../../utils/filterProjects";
+import Pagination from "../../components/Pagination.astro";
 
-const allProjects = await Astro.glob("./*.md");
-const filteredProjects = filterProjects(allProjects);
+export async function getStaticPaths({ paginate }: any) {
+  const allProjects = await Astro.glob("./*.md");
+  const filteredProjects = filterProjects(allProjects);
+
+  return paginate(filteredProjects, {
+    pageSize: 2,
+  });
+}
+
+const { page } = Astro.props;
+console.log(page);
 ---
 
 <MainLayout title="My Projects">
@@ -12,7 +22,7 @@ const filteredProjects = filterProjects(allProjects);
     <h1 class="h1">My Projects</h1>
     <div class="post-container">
       {
-        filteredProjects.map((project) => (
+        page.data.map((project: any) => (
           <ProjectCard
             frontmatter={project.frontmatter}
             url={project.url}
@@ -21,5 +31,6 @@ const filteredProjects = filterProjects(allProjects);
         ))
       }
     </div>
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
   </section>
 </MainLayout>
