@@ -44,19 +44,19 @@ const relatedProjects = filteredProjects
 
 <MainLayout {title} {description} {image} {project.data}>
   <ProjectHeader {title} {date} {category} {author} {image} />
-  <div class="post-content">
-    <div class="content">
+  <div class="main-with-sidebar">
+    <div>
       <Content />
     </div>
-    <div class="sidebar">
-      <aside class="container" aria-label="Blog categories">
-        <h2 class="h3">Project Categories</h2>
+    <div>
+      <aside>
+        <h2>Project Categories</h2>
         <CategoryCloud />
       </aside>
       {
         relatedProjects.length > 0 && (
-          <aside class="container" aria-label="Related posts">
-            <h2 class="h3">Related Projects</h2>
+          <aside>
+            <h2>Related Projects</h2>
             <RelatedProjects {relatedProjects} />
           </aside>
         )
@@ -64,3 +64,22 @@ const relatedProjects = filteredProjects
     </div>
   </div>
 </MainLayout>
+
+<style>
+  .main-with-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1em;
+  }
+
+  .main-with-sidebar > :first-child {
+    flex-basis: 500px;
+    flex-grow: 9999;
+  }
+
+  .main-with-sidebar > :last-child {
+    flex-basis: 300px;
+    flex-grow: 1;
+  }
+</style>
