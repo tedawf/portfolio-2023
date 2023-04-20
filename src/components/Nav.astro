@@ -1,30 +1,32 @@
 ---
-import { Icon } from "astro-icon";
 import Link from "./Link.astro";
-import navData from "../data/navData";
+import { Image } from "@astrojs/image/components";
+
+const backgroundColor = "rgba(255, 255, 255, 1)";
 ---
 
-<nav aria-label="Primary">
-  <div class="navbar">
-    <a href="/" aria-label="Go home" class="logomark">
-      <Icon name="logomark" width="60" />
-    </a>
+<header>
+  <a href="/" class="logo">
+    <Image src="/logo.svg" alt="logo" height={50} width={50} />
+  </a>
+  <input type="checkbox" class="nav-toggle" />
+  <nav>
     <ul>
-      {
-        navData.map((item) => (
-          <Link
-            text={item.name}
-            href={item.path}
-            style="primary"
-            isFilled={false}
-            data-navLink
-          />
-        ))
-      }
+      <li>
+        <a href="/about/">About</a>
+      </li>
+      <li>
+        <a href="/projects/">Projects</a>
+      </li>
+      <li>
+        <a href="/">Experience</a>
+      </li>
+      <li>
+        <a href="/">Contact</a>
+      </li>
+      <li>
+        <a href="/">Resume</a>
+      </li>
     </ul>
-  </div>
-</nav>
-
-<script>
-  import "../utils/navlink.ts";
-</script>
+  </nav>
+</header>

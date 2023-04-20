@@ -26,7 +26,7 @@ const {
 } = Astro.props as Props;
 ---
 
-<a
+<!-- <a
   href={href}
   class:list={[
     "link",
@@ -47,4 +47,5 @@ const {
       <Icon name={icon.name} height="24" width="24" />
     )
   }
-</a>
+</a> -->
+<a href={href}>{text}</a>
