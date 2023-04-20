@@ -1,0 +1,60 @@
+---
+import { Image } from "@astrojs/image/components";
+import { Icon } from "astro-icon";
+import navData from "../data/navData.json";
+---
+
+<nav class="bg-white">
+  <div class="mx-auto max-w-full border-b-2 border-solid border-black">
+    <div class="flex justify-between">
+      <!-- logo -->
+      <div>
+        <a href="/">
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width={50}
+            height={50}
+            format="webp"
+          />
+        </a>
+      </div>
+      <!-- primary nav -->
+      <div class="hidden items-center space-x-10 md:flex">
+        {navData.map((link) => <a href={link.path}>{link.name}</a>)}
+      </div>
+      <!-- secondary nav -->
+      <div
+        class="hidden items-center border-l-2 border-solid border-black bg-black text-white hover:border-l-2 hover:border-solid hover:border-black hover:bg-cyan-400 hover:text-black md:flex"
+      >
+        <a href="/">Resume</a>
+      </div>
+      <!-- mobile button -->
+      <div class="flex items-center md:hidden">
+        <button class="mobile-menu-btn">
+          <Icon name="tabler:menu" height="40" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- mobile menu -->
+  <div class="mobile-menu hidden min-h-screen md:hidden">
+    {
+      navData.map((link) => (
+        <a href={link.path} class="block px-4 py-2">
+          {link.name}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+<!-- content -->
+
+<script>
+  const btn = document.querySelector("button.mobile-menu-btn");
+  const menu = document.querySelector(".mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>
