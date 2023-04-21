@@ -1,6 +1,18 @@
 ---
+interface Props {
+  borderVisible?: boolean;
+  classes?: string;
+}
+
+const { borderVisible = true, classes } = Astro.props;
 ---
 
-<article class="border-b-2 border-black bg-green-300">
+<article
+  class:list={[
+    "flex flex-col bg-green-300",
+    borderVisible ? "border-b-2 border-black" : "",
+    classes,
+  ]}
+>
   <slot />
 </article>

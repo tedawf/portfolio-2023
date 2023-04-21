@@ -29,9 +29,9 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
   <!-- 1. Introduction -->
   <main>
     <Section>
-      <Article>
+      <Article classes="flex-grow">
         <Content>
-          <div class="flex flex-col items-center py-14 text-center">
+          <div class="flex flex-col items-center justify-center text-center">
             <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
             <h1 class="mb-2 text-3xl font-medium">Ang Wei Feng (Ted).</h1>
             <h1 class="mb-4 h-20 text-3xl font-medium md:mb-12">
@@ -39,11 +39,11 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
               <span id="tagline" class="text-cyan-500"></span>
               for you.
             </h1>
-            <Card isCircular={false} classes="px-6 py-3 mb-4 text-xl">
+            <Card isCircular={false} classes="px-10 py-4 mb-10 text-xl">
               Check out my resume!
             </Card>
             <!-- Social media -->
-            <div class="flex gap-1 md:hidden">
+            <div class="flex gap-5 md:hidden">
               <SocialMedia />
             </div>
           </div>
@@ -85,7 +85,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
           </section>
         </Content>
       </Article>
-      <Article>
+      <Article borderVisible={false}>
         <Content>
           <div class="py-8 text-center">
             <h2 class="mb-6 text-xl">🔨 Some stuff I've built...</h2>
