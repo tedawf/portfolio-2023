@@ -2,6 +2,7 @@
 import formatDate from "../utils/formatDate";
 import { Image } from "@astrojs/image/components";
 import Link from "./Link.astro";
+import Card from "./Card.astro";
 import slugify from "../utils/slugify";
 
 const { data, url, tagType } = Astro.props;
@@ -11,7 +12,29 @@ const { title, date, category, author, image, description } = data;
 const Tag = tagType;
 ---
 
-<article class="card">
+<Card isCircular={false}>
+  <div>
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={400}
+      height={250}
+      format="webp"
+      class="rounded-t-lg"
+    />
+    <div class="p-4 text-left">
+      <h3>
+        {title}
+      </h3>
+      <p>
+        {description}
+      </p>
+      <h4>Read More</h4>
+    </div>
+  </div>
+</Card>
+
+<!-- <article class="card">
   <small>
     {
       category.map((item: string) => (
@@ -21,18 +44,7 @@ const Tag = tagType;
       ))
     }
   </small>
-  <a href={`/projects/${url}`} aria-hidden="true" tabindex="-1">
-    <Image
-      src={image.src}
-      alt={image.alt}
-      width={400}
-      height={250}
-      format="webp"
-      fit="cover"
-      quality={80}
-      aspectRatio="4:1"
-    />
-  </a>
+  <a href={`/projects/${url}`} aria-hidden="true" tabindex="-1"> </a>
   <div class="content">
     <div>
       <Tag class="h3">
@@ -47,4 +59,4 @@ const Tag = tagType;
     <p>{description}</p>
     <Link href={`/projects/${url}`} text="View Project" style="secondary" />
   </div>
-</article>
+</article> -->

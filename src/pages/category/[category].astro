@@ -1,7 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import ProjectCard from "../../components/ProjectCard.astro";
-import MainLayout from "../../layouts/MainLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import filterProjects from "../../utils/filterProjects";
 import slugify from "../../utils/slugify";
 
@@ -41,7 +41,7 @@ const categorisedProjects = filteredProjects.filter((project: any) =>
 );
 ---
 
-<MainLayout title={name}>
+<BaseLayout title={name}>
   <section class="container" aria-label={`Projects using ${name}`}>
     <h1 class="h1">Projects using <span>{name}</span></h1>
     <div class="post-container">
@@ -52,4 +52,4 @@ const categorisedProjects = filteredProjects.filter((project: any) =>
       }
     </div>
   </section>
-</MainLayout>
+</BaseLayout>

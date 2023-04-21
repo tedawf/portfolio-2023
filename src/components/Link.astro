@@ -2,26 +2,24 @@
 import { Icon } from "astro-icon";
 
 interface Props {
-  text: string;
   href: string;
-  style: "primary" | "secondary";
-  icon?: {
-    name: string;
-    side: "left" | "right";
-  };
-  isFilled?: boolean;
-  borderVisible?: boolean;
   classes?: string;
+  bgDark?: boolean;
+  // style: "primary" | "secondary";
+  // icon?: {
+  //   name: string;
+  //   side: "left" | "right";
+  // };
+  // borderVisible?: boolean;
 }
 
 const {
-  text,
   href,
-  style,
-  icon,
-  isFilled = true,
-  borderVisible = false,
   classes,
+  bgDark = false,
+  // style,
+  // icon,
+  // borderVisible = false,
   ...rest
 } = Astro.props as Props;
 ---
@@ -48,4 +46,6 @@ const {
     )
   }
 </a> -->
-<a href={href}>{text}</a>
+<a href={href} target="_blank" class:list={[classes]} {...rest}>
+  <slot />
+</a>

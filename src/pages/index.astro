@@ -1,9 +1,15 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
+import Card from "../components/Card.astro";
 import Link from "../components/Link.astro";
+import Section from "../components/Section.astro";
+import Article from "../components/Article.astro";
+import Content from "../components/Content.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import MainLayout from "../layouts/MainLayout.astro";
+import SocialMedia from "../components/SocialMedia.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import filterProjects from "../utils/filterProjects";
+import { Image } from "@astrojs/image/components";
 
 const allProjects = await getCollection("projects");
 const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
@@ -12,38 +18,117 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
 );
 ---
 
-<MainLayout title="Ted | Portfolio">
-  <section class="container about" aria-label="About Me">
-    <img
-      src="/images/headshot.jpg"
-      alt="My headshot"
-      width="200"
-      height="330"
-    />
-    <div class="content">
-      <h1 class="h1">My Portfolio</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nam
-        a molestias ad. Commodi voluptas provident voluptate voluptatum non
-        mollitia aliquid reiciendis odio modi vero impedit quaerat, repellendus
-        sit dolores cumque exercitationem unde! Tempore nulla blanditiis
-        consequatur modi cum ipsum?
-      </p>
-      <Link
-        href="mailto:ted.awf@outlook.com"
-        style="secondary"
-        text="👋 Say Hello"
-      />
+<BaseLayout>
+  <!-- <div class="relative z-10 rounded-lg border-4 border-black p-5 shadow-2xl"> -->
+  <!-- absolute positioned background shadow -->
+  <!-- <div class="absolute left-1 top-1 h-full w-full rounded-lg bg-black"> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- Social media sidebar -->
+
+  <!-- 1. Introduction -->
+  <main>
+    <Section>
+      <Article>
+        <Content>
+          <div class="flex flex-col items-center py-14 text-center">
+            <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
+            <h1 class="mb-2 text-3xl font-medium">Ang Wei Feng (Ted).</h1>
+            <h1 class="mb-4 h-20 text-3xl font-medium md:mb-12">
+              I can
+              <span id="tagline" class="text-cyan-500"></span>
+              for you.
+            </h1>
+            <Card isCircular={false} classes="px-6 py-3 mb-4 text-xl">
+              Check out my resume!
+            </Card>
+            <!-- Social media -->
+            <div class="flex gap-1 md:hidden">
+              <SocialMedia />
+            </div>
+          </div>
+        </Content>
+      </Article>
+      <!-- photo -->
+      <Article>
+        <Content>
+          <div class="flex justify-center py-7">
+            <Card isCircular={false}>
+              <Image
+                src="/images/headshot.jpg"
+                alt="Photo of Ted"
+                width={300}
+                height={300}
+                class="rounded-lg"
+              />
+            </Card>
+          </div>
+        </Content>
+      </Article>
+    </Section>
+    <div class="fixed right-5 top-3/4 hidden flex-col gap-1 md:flex">
+      <SocialMedia />
     </div>
-  </section>
-  <section class="container" aria-label="My Projects">
-    <h2 class="h1">My Projects</h2>
-    <div class="post-container">
-      {
-        filteredProjects.map((project) => (
-          <ProjectCard data={project.data} url={project.slug} tagType="h3" />
-        ))
-      }
-    </div>
-  </section>
-</MainLayout>
+
+    <!-- 2. About me -->
+    <Section>
+      <Article>
+        <Content>
+          <section class="flex flex-col items-center text-center">
+            <div class="max-w-[22rem] py-10">
+              <h2 class="mb-3 text-xl">🤔 About me...</h2>
+              <p class="text-3xl font-medium">
+                I'm a software developer and I'm always looking for
+                opportunities to learn cool new technologies.
+              </p>
+            </div>
+          </section>
+        </Content>
+      </Article>
+      <Article>
+        <Content>
+          <div class="py-8 text-center">
+            <h2 class="mb-6 text-xl">🔨 Some stuff I've built...</h2>
+            <div class="flex flex-col gap-4">
+              {
+                filteredProjects.map((project) => (
+                  <ProjectCard
+                    data={project.data}
+                    url={project.slug}
+                    tagType="h3"
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </Content>
+      </Article>
+    </Section>
+  </main>
+</BaseLayout>
+
+<script>
+  import Typed from "typed.js";
+  var tagline = new Typed("#tagline", {
+    strings: [
+      "build something",
+      "build software",
+      "build a frontend",
+      "build backend services",
+      "do fullstack development",
+      "deploy to the cloud",
+      "maintain code",
+      "create and fix bugs",
+      "migrate data",
+      "write documentation",
+      "drop table in production",
+    ],
+    startDelay: 1000,
+    typeSpeed: 50,
+    backSpeed: 50,
+    loop: true,
+    backDelay: 2500,
+    cursorChar: "|",
+    shuffle: true,
+  });
+</script>

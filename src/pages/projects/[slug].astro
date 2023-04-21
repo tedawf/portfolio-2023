@@ -1,7 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import filterProjects from "../../utils/filterProjects";
-import MainLayout from "../../layouts/MainLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import CategoryCloud from "../../components/CategoryCloud.astro";
 import RelatedProjects from "../../components/RelatedProjects.astro";
 import ProjectHeader from "../../components/ProjectHeader.astro";
@@ -42,7 +42,7 @@ const relatedProjects = filteredProjects
   .slice(0, 3);
 ---
 
-<MainLayout {title} {description} {image} {project.data}>
+<BaseLayout {title} {description} {image} {project.data}>
   <ProjectHeader {title} {date} {category} {author} {image} />
   <div class="main-with-sidebar">
     <div>
@@ -63,4 +63,4 @@ const relatedProjects = filteredProjects
       }
     </div>
   </div>
-</MainLayout>
+</BaseLayout>

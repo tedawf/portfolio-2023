@@ -1,0 +1,26 @@
+---
+interface Props {
+  isCircular?: boolean;
+  showHover?: boolean;
+  classes?: string;
+}
+
+const { isCircular = true, showHover = true, classes } = Astro.props;
+---
+
+<div class="relative z-[1]">
+  <button
+    class:list={[
+      isCircular
+        ? "rounded-full after:rounded-full"
+        : "rounded-xl after:rounded-xl",
+      showHover
+        ? "hover:translate-x-1 hover:translate-y-1 hover:after:hidden"
+        : "cursor-default",
+      "relative flex border-2 border-black bg-white after:absolute after:-z-[1] after:inset-1 after:h-[101%] after:w-[101%] after:bg-black",
+      classes,
+    ]}
+  >
+    <slot />
+  </button>
+</div>

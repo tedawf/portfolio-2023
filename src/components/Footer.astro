@@ -1,18 +1,23 @@
 ---
 import Icon from "astro-icon";
+import Card from "./Card.astro";
+import SocialMedia from "./SocialMedia.astro";
 ---
 
-<footer>
-  <div>
-    <small>
-      Copyright &copy; <span id="copyright"></span> Ang Wei Feng (Ted) | All rights
-      reserved
+<footer class="border-t-2 border-black bg-white">
+  <div class="mx-auto flex max-w-[22rem] flex-col items-center bg-yellow-300">
+    <div class="flex gap-9 py-5">
+      <SocialMedia />
+    </div>
+    <Card classes="p-2 mb-2">
+      <Icon name="tabler:rss" width={20} height={20} />
+      <span class="pl-1">Subscribe to RSS</span>
+    </Card>
+    <small class="p-2">
+      <span>Copyright &copy;</span>
+      <span id="copyright"></span>
+      <span>Ang Wei Feng (Ted) | All rights reserved.</span>
     </small>
-    <small
-      ><a href="/rss.xml"
-        >Subscribe to RSS <Icon name="tabler:rss" width={20} height={20} /></a
-      ></small
-    >
   </div>
 </footer>
 

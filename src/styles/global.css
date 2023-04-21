@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .section-min-height {
+    /* Minus navbar height */
+    min-height: calc(100vh - 80px);
+  }
+}

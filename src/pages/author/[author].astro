@@ -1,7 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import ProjectCard from "../../components/ProjectCard.astro";
-import MainLayout from "../../layouts/MainLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import filterProjects from "../../utils/filterProjects";
 import slugify from "../../utils/slugify";
 
@@ -35,7 +35,7 @@ const { author } = Astro.params;
 const { authorName, projects } = Astro.props;
 ---
 
-<MainLayout title={authorName}>
+<BaseLayout title={authorName}>
   <section class="container" aria-label={`Projects done by ${authorName}`}>
     <h1 class="h1">Projects done by <span>{authorName}</span></h1>
     <div class="post-container">
@@ -46,4 +46,4 @@ const { authorName, projects } = Astro.props;
       }
     </div>
   </section>
-</MainLayout>
+</BaseLayout>

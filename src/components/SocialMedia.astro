@@ -1,0 +1,16 @@
+---
+import { Icon } from "astro-icon";
+import socialData from "../data/socialData.json";
+import Card from "./Card.astro";
+import Link from "./Link.astro";
+---
+
+{
+  socialData.map((social) => (
+    <Link href={social.link}>
+      <Card classes="p-2">
+        <Icon name={social.icon} width={20} />
+      </Card>
+    </Link>
+  ))
+}
