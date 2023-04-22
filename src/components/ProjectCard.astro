@@ -1,47 +1,44 @@
 ---
 import formatDate from "../utils/formatDate";
 import { Image } from "@astrojs/image/components";
-import Link from "./Link.astro";
 import Card from "./Card.astro";
 import slugify from "../utils/slugify";
 import Icon from "astro-icon";
 
-const { data, url, tagType } = Astro.props;
+const { data, url } = Astro.props;
 
 const { title, date, category, author, image, description } = data;
-
-const Tag = tagType;
 ---
 
-<article class="pr-1">
-  <Card isCircular={false}>
-    <div>
+<article class="px-4 py-8">
+  <Card isCircular={false} href={url}>
+    <div class="flex h-[500px] flex-col bg-purple-300">
       <Image
         src={image.src}
         alt={image.alt}
-        width={300}
+        height={600}
+        fit="fill"
         aspectRatio={"2:1"}
         format="webp"
-        class="rounded-t-lg"
+        class="rounded-t-lg lg:rounded-l-lg"
       />
-      <div class="flex h-48 flex-col justify-between px-5 text-left">
-        <figcaption>
-          <h3 class="py-3 font-semibold">
-            {title}
-          </h3>
-          <p>
-            {description}
-          </p>
-        </figcaption>
+      <figcaption
+        class="flex flex-grow flex-col justify-between bg-cyan-300 p-5 text-left"
+      >
+        <h3 class="mb-5 flex font-semibold">
+          {title}
+        </h3>
+        <p class="mb-5 flex bg-red-200">
+          {description}
+        </p>
         <div class="flex items-center justify-end pb-3">
           <h4 class="mr-2 font-medium">Read More</h4>
           <Icon name="tabler:arrow-narrow-right" height={20} />
         </div>
-      </div>
+      </figcaption>
     </div>
   </Card>
 </article>
-
 <!-- <article class="card">
   <small>
     {

@@ -1,14 +1,12 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import Card from "../components/Card.astro";
-import Section from "../components/Section.astro";
-import Article from "../components/Article.astro";
-import Content from "../components/Content.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SocialMedia from "../components/SocialMedia.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import filterProjects from "../utils/filterProjects";
 import { Image } from "@astrojs/image/components";
+import CategoryCloud from "../components/CategoryCloud.astro";
 
 const allProjects = await getCollection("projects");
 const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
@@ -26,81 +24,156 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
   <!-- Social media sidebar -->
 
   <!-- 1. Introduction -->
-  <main class="max-w-xs">
-    <Section>
-      <div class="flex flex-col items-center justify-center text-center">
+  <main>
+    <section
+      class="section-min-height flex w-screen flex-col items-center justify-center border-b-2 border-black text-center dark:border-white lg:flex-row lg:justify-between"
+    >
+      <div
+        class="flex w-full flex-col items-center lg:ml-28 lg:w-1/2 lg:items-start lg:text-left"
+      >
         <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
-        <h1 class="mb-2 text-3xl font-medium">Ang Wei Feng (Ted).</h1>
-        <h1 class="mb-4 h-20 text-3xl font-medium md:mb-12">
+        <h1 class="mb-4 text-3xl font-medium sm:text-4xl xl:text-5xl">
+          Ang Wei Feng (Ted).
+        </h1>
+        <h1
+          class="mb-4 min-h-[80px] text-3xl font-medium sm:text-4xl xl:mb-8 xl:min-h-[96px] xl:text-5xl"
+        >
           I can
           <span id="tagline" class="text-cyan-500"></span>
           for you.
         </h1>
-        <Card isCircular={false} classes="px-10 py-4 mb-10 text-xl">
-          Check out my resume!
-        </Card>
-        <!-- Social media -->
-        <div class="flex w-screen max-w-lg justify-evenly py-5 lg:hidden">
-          <SocialMedia />
+        <div class="grid grid-cols-1 place-items-start xl:grid-cols-2 xl:gap-1">
+          <Card isCircular={false} classes="max-w-[300px] ">
+            <p class="px-4 py-3 text-center text-3xl">Resume 📥</p>
+          </Card>
+          <Card
+            href="/contact/"
+            isCircular={false}
+            classes="max-w-[300px] xl:ml-8  "
+          >
+            <p class="px-4 py-3 text-center text-3xl">Contact 📩</p>
+          </Card>
         </div>
       </div>
-    </Section>
-    <Section>
+      <!-- Social media -->
+      <div class="flex w-screen max-w-lg justify-evenly py-5 lg:hidden">
+        <SocialMedia />
+      </div>
+      <div class="hidden justify-center lg:mr-28 lg:flex">
+        <Card isCircular={false}>
+          <Image
+            src="/images/headshot.jpg"
+            alt="Photo of Ted"
+            width={450}
+            height={450}
+            class="rounded-lg"
+          />
+        </Card>
+      </div>
+    </section>
+    <section class="p-4 lg:hidden">
       <!-- photo -->
-      <Article>
-        <Content>
-          <div class="flex justify-center py-7">
-            <Card isCircular={false}>
-              <Image
-                src="/images/headshot.jpg"
-                alt="Photo of Ted"
-                width={300}
-                height={300}
-                class="rounded-lg"
-              />
-            </Card>
-          </div>
-        </Content>
-      </Article>
-    </Section>
-    <div class="fixed right-5 top-2/3 hidden flex-col gap-1 lg:flex">
+      <div class="flex justify-center">
+        <Card isCircular={false}>
+          <Image
+            src="/images/headshot.jpg"
+            alt="Photo of Ted"
+            width={300}
+            height={300}
+            class="rounded-lg"
+          />
+        </Card>
+      </div>
+    </section>
+    <section
+      class="flex flex-col items-center border-b-2 border-black py-16 dark:border-white"
+    >
+      <p
+        class="max-w-sm text-center text-3xl font-medium sm:max-w-xl lg:max-w-4xl"
+      >
+        <span class="py-8">👆<br /><br />That's me!</span>
+        <br />
+        <br />
+
+        <span class="py-8"
+          >I'm always looking for opportunities to learn cool new technologies. <br
+          />
+          <br />🔨<br /><br /> You can see some of the projects I have built below.</span
+        >
+      </p>
+    </section>
+
+    <!-- sticky side bar -->
+    <div class="fixed right-5 top-2/3 hidden flex-col gap-2 lg:flex">
       <SocialMedia />
     </div>
 
-    <!-- 2. About me -->
-    <Section>
-      <Article>
-        <Content>
-          <section class="flex flex-col items-center text-center">
-            <div class="max-w-[22rem] py-10">
-              <h2 class="mb-3 text-xl">🤔 About me...</h2>
-              <p class="text-3xl font-medium">
-                I'm a software developer and I'm always looking for
-                opportunities to learn cool new technologies.
-              </p>
-            </div>
-          </section>
-        </Content>
-      </Article>
-      <Article borderVisible={false}>
-        <Content>
-          <div class="py-8 text-center">
-            <h2 class="mb-6 text-xl">🔨 Some stuff I've built...</h2>
-            <div class="flex flex-col gap-4">
-              {
-                filteredProjects.map((project) => (
-                  <ProjectCard
-                    data={project.data}
-                    url={project.slug}
-                    tagType="h3"
-                  />
-                ))
-              }
-            </div>
-          </div>
-        </Content>
-      </Article>
-    </Section>
+    <!-- Featured projects -->
+    <section
+      class="flex flex-col items-center border-b-2 border-black dark:border-white"
+    >
+      <div
+        class="grid grid-cols-1 place-items-center sm:grid-cols-2 lg:mx-16 lg:grid-cols-3"
+      >
+        {
+          filteredProjects.map((project) => (
+            <ProjectCard data={project.data} url={project.slug} />
+          ))
+        }
+        <Card
+          href="/projects/"
+          isCircular={false}
+          classes="max-w-[300px] flex justify-center my-10 lg:hidden"
+        >
+          <p class="p-4 text-center text-3xl">View more projects</p>
+        </Card>
+      </div>
+      <Card
+        href="/projects/"
+        isCircular={false}
+        classes="max-w-[300px] lg:flex justify-center my-10 hidden"
+      >
+        <p class="p-4 text-center text-3xl">View more projects</p>
+      </Card>
+    </section>
+
+    <!-- Companies -->
+    <section class="grid grid-cols-5 border-b-2 border-black dark:border-white">
+      <div class="col-span-2 grid bg-red-300">
+        Here are some of the companies I work for.
+      </div>
+      <div class="col-span-3 grid bg-cyan-300">
+        <CategoryCloud />
+      </div>
+    </section>
+    <!-- Skills -->
+    <section class="grid grid-cols-5 border-b-2 border-black dark:border-white">
+      <div class="col-span-3 grid bg-cyan-300">
+        <CategoryCloud />
+      </div>
+      <div class="col-span-2 grid bg-red-300">
+        Here are some of the skills I acquired.
+      </div>
+    </section>
+    <!-- Contact -->
+    <section class="flex flex-col items-center">
+      <h1 class="py-8 text-4xl font-medium sm:text-5xl xl:text-6xl">
+        Get In Touch
+      </h1>
+      <p
+        class="max-w-sm py-4 text-center text-2xl font-medium sm:max-w-xl md:text-3xl lg:max-w-4xl"
+      >
+        Although currently I'm not looking for new opportunities, my inbox is
+        open 24/7. Drop me a message and I'll get to back to you ASAP.
+      </p>
+      <Card
+        href="/projects/"
+        isCircular={false}
+        classes="max-w-[300px] flex justify-center mt-8 mb-16"
+      >
+        <p class="p-4 text-center text-3xl">📩 Contact Me</p>
+      </Card>
+    </section>
   </main>
 </BaseLayout>
 
@@ -109,16 +182,16 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
   var tagline = new Typed("#tagline", {
     strings: [
       "build something",
-      "build software",
+      "DROP TABLE in production",
+      "build software applications",
+      "do fullstack development",
       "build a frontend",
       "build backend services",
-      "do fullstack development",
       "deploy to the cloud",
-      "maintain code",
+      "maintain legacy code",
       "create and fix bugs",
-      "migrate data",
+      "do a data migration",
       "write documentation",
-      "drop table in production",
     ],
     startDelay: 1000,
     typeSpeed: 50,
@@ -126,6 +199,6 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
     loop: true,
     backDelay: 2500,
     cursorChar: "|",
-    shuffle: true,
+    shuffle: false,
   });
 </script>
