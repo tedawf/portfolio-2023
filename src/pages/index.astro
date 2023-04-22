@@ -1,7 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import Card from "../components/Card.astro";
-import Link from "../components/Link.astro";
 import Section from "../components/Section.astro";
 import Article from "../components/Article.astro";
 import Content from "../components/Content.astro";
@@ -27,28 +26,26 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
   <!-- Social media sidebar -->
 
   <!-- 1. Introduction -->
-  <main>
+  <main class="max-w-xs">
     <Section>
-      <Article classes="flex-grow">
-        <Content>
-          <div class="flex flex-col items-center justify-center text-center">
-            <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
-            <h1 class="mb-2 text-3xl font-medium">Ang Wei Feng (Ted).</h1>
-            <h1 class="mb-4 h-20 text-3xl font-medium md:mb-12">
-              I can
-              <span id="tagline" class="text-cyan-500"></span>
-              for you.
-            </h1>
-            <Card isCircular={false} classes="px-10 py-4 mb-10 text-xl">
-              Check out my resume!
-            </Card>
-            <!-- Social media -->
-            <div class="flex gap-5 md:hidden">
-              <SocialMedia />
-            </div>
-          </div>
-        </Content>
-      </Article>
+      <div class="flex flex-col items-center justify-center text-center">
+        <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
+        <h1 class="mb-2 text-3xl font-medium">Ang Wei Feng (Ted).</h1>
+        <h1 class="mb-4 h-20 text-3xl font-medium md:mb-12">
+          I can
+          <span id="tagline" class="text-cyan-500"></span>
+          for you.
+        </h1>
+        <Card isCircular={false} classes="px-10 py-4 mb-10 text-xl">
+          Check out my resume!
+        </Card>
+        <!-- Social media -->
+        <div class="flex w-screen max-w-lg justify-evenly py-5 lg:hidden">
+          <SocialMedia />
+        </div>
+      </div>
+    </Section>
+    <Section>
       <!-- photo -->
       <Article>
         <Content>
@@ -66,7 +63,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         </Content>
       </Article>
     </Section>
-    <div class="fixed right-5 top-3/4 hidden flex-col gap-1 md:flex">
+    <div class="fixed right-5 top-2/3 hidden flex-col gap-1 lg:flex">
       <SocialMedia />
     </div>
 

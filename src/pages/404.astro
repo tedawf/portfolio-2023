@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Link from "../components/Link.astro";
 ---
 
 <BaseLayout title="Page Not Found">
@@ -17,11 +16,6 @@ import Link from "../components/Link.astro";
       <h1 class="h1">Omg, paiseh sia!</h1>
       <p>I think here got missing page leh...</p>
     </div>
-    <Link
-      href="/"
-      style="secondary"
-      text="Nvm, you go home first"
-      icon={{ name: "tabler:home", side: "right" }}
-    />
+    <a href="/">Nvm, you go home first</a>
   </div>
 </BaseLayout>

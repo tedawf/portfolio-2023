@@ -2,64 +2,100 @@
 import { Image } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 import navData from "../data/navData.json";
-import Link from "./Link.astro";
-import SocialMedia from "./SocialMedia.astro";
 ---
 
 <header
-  class="sticky top-0 z-10 max-w-full border-b-2 border-solid border-black bg-white"
+  class="sticky top-0 z-10 border-b-2 border-black bg-white dark:border-white dark:bg-black"
 >
   <nav>
-    <div class="mx-auto flex max-w-[22rem] justify-between">
+    <div class="flex justify-between">
       <!-- logo -->
       <div>
-        <Link href="/">
+        <a href="/">
           <Image
+            id="logo-white"
             src="/logo.svg"
             alt="logo"
             width={80}
             height={80}
             format="webp"
           />
-        </Link>
+          <Image
+            id="logo-dark"
+            src="/logo-dark.svg"
+            alt="logo"
+            width={80}
+            height={80}
+            format="webp"
+          />
+        </a>
       </div>
       <!-- primary nav, hide in mobile -->
-      <div class="hidden items-center space-x-10 md:flex">
-        {navData.map((link) => <Link href={link.path}>{link.name}</Link>)}
+      <div class="hidden items-center space-x-10 lg:flex">
+        {navData.map((link) => <a href={link.path}>{link.name}</a>)}
       </div>
-      <!-- secondary nav, hide in mobile -->
-      <div
-        class="hidden items-center border-l-2 border-solid border-black bg-black text-white hover:border-l-2 hover:border-solid hover:border-black hover:bg-cyan-400 hover:text-black md:flex"
-      >
-        <Link href="/" bgDark={true}>Resume</Link>
-      </div>
-      <!-- mobile button, hide in desktop -->
-      <div class="flex items-center bg-blue-300 md:hidden">
-        <button id="mobile-menu-btn">
-          <Icon name="tabler:menu" height="40" />
-        </button>
-      </div>
-    </div>
-    <!-- mobile menu -->
-    <div
-      id="mobile-menu"
-      class="absolute hidden min-h-screen bg-white md:hidden"
-    >
-      {
-        navData.map((link) => (
-          <Link
-            href={link.path}
-            classes="block px-4 py-3 border-b-2 border-solid border-black"
-          >
-            {link.name}
-          </Link>
-        ))
-      }
-      <div class="mt-5 flex justify-center gap-1">
-        <SocialMedia />
+      <div class="flex">
+        <div class="flex items-center">
+          <Icon
+            name="tabler:sun"
+            height="40"
+            id="sun"
+            class="mr-4 dark:text-orange-300"
+          />
+          <Icon
+            name="tabler:moon"
+            height="40"
+            id="moon"
+            class="mr-4 text-indigo-700"
+          />
+        </div>
+        <!-- secondary nav, hide in mobile -->
+        <div
+          class="hidden items-center border-l-2 px-6 text-white hover:border-l-2 hover:border-solid hover:border-black hover:bg-cyan-400 hover:text-black lg:flex xl:px-8"
+        >
+          <a href="/">Resume</a>
+        </div>
+
+        <!-- mobile button, hide in desktop -->
+        <div class="mr-4 flex items-center lg:hidden">
+          <Icon
+            name="tabler:menu"
+            height="40"
+            id="mobile-menu-btn"
+            class="dark:text-white"
+          />
+        </div>
       </div>
     </div>
   </nav>
+  <!-- mobile menu -->
+  <div
+    id="mobile-menu"
+    class="fixed right-[-100%] top-0 z-10 h-screen w-4/6 border-l-2 bg-white duration-500 ease-in dark:bg-black"
+  >
+    <div class="flex h-[82px] items-center justify-end border-b-2">
+      <Icon
+        id="mobile-menu-btn"
+        name="tabler:letter-x"
+        height="40"
+        class="mr-4"
+      />
+    </div>
+    {
+      navData.map((link) => (
+        <a href={link.path} class="block border-b-2 p-4 md:p-6">
+          {link.name}
+        </a>
+      ))
+    }
+
+    <a
+      href="/"
+      class="block border-b-2 border-black bg-black p-4 text-white hover:border-b-2 hover:border-black hover:bg-cyan-400 hover:text-black dark:border-white dark:bg-white dark:text-black md:p-6"
+    >
+      Resume
+    </a>
+  </div>
 </header>
 
 <script>
@@ -67,9 +103,64 @@ import SocialMedia from "./SocialMedia.astro";
   const menu = document.querySelector("#mobile-menu");
 
   const toggleMenu = () => {
-    menu?.classList.toggle("hidden");
+    if (!menu?.classList.replace("right-0", "right-[-100%]"))
+      menu?.classList.replace("right-[-100%]", "right-0");
   };
 
   menu?.addEventListener("click", toggleMenu);
   btn?.addEventListener("click", toggleMenu);
+
+  // Icons
+  const sunIcon = document.querySelector("#sun");
+  const moonIcon = document.querySelector("#moon");
+  const logoWhite = document.querySelector("#logo-white");
+  const logoDark = document.querySelector("#logo-dark");
+
+  // Preference
+  const userTheme = localStorage.getItem("theme");
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  // Icon toggle
+  const iconToggle = () => {
+    moonIcon?.classList.toggle("hidden");
+    sunIcon?.classList.toggle("hidden");
+    logoWhite?.classList.toggle("hidden");
+    logoDark?.classList.toggle("hidden");
+  };
+
+  // Initial theme check
+  const themeCheck = () => {
+    if (userTheme === "dark" || (!userTheme && systemTheme)) {
+      document.documentElement.classList.add("dark");
+      moonIcon?.classList.add("hidden");
+      logoWhite?.classList.add("hidden");
+    } else {
+      sunIcon?.classList.add("hidden");
+      logoDark?.classList.add("hidden");
+    }
+  };
+
+  // Theme switch
+  const themeSwitch = () => {
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      iconToggle();
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      iconToggle();
+    }
+  };
+
+  // Click buttons
+  sunIcon?.addEventListener("click", () => {
+    themeSwitch();
+  });
+  moonIcon?.addEventListener("click", () => {
+    themeSwitch();
+  });
+
+  // Check theme on load
+  themeCheck();
 </script>

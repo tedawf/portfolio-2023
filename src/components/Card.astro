@@ -1,15 +1,17 @@
 ---
 interface Props {
+  href?: string;
   isCircular?: boolean;
   showHover?: boolean;
   classes?: string;
 }
 
-const { isCircular = true, showHover = true, classes } = Astro.props;
+const { href, isCircular = true, showHover = true, classes } = Astro.props;
 ---
 
 <div class="relative z-[1]">
-  <button
+  <a
+    href={href}
     class:list={[
       isCircular
         ? "rounded-full after:rounded-full"
@@ -17,10 +19,10 @@ const { isCircular = true, showHover = true, classes } = Astro.props;
       showHover
         ? "hover:translate-x-1 hover:translate-y-1 hover:after:hidden"
         : "cursor-default",
-      "relative flex border-2 border-black bg-white after:absolute after:-z-[1] after:inset-1 after:h-[101%] after:w-[101%] after:bg-black",
+      "relative bg-white dark:bg-black dark:text-white dark:border-white border-black after:bg-black dark:after:bg-slate-700 flex border-2 after:absolute after:-z-[1] after:overflow-x-hidden after:inset-1 after:h-[101%] after:w-[101%]",
       classes,
     ]}
   >
     <slot />
-  </button>
+  </a>
 </div>
