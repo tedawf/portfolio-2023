@@ -26,7 +26,9 @@ const {
       showHover
         ? "hover:translate-x-1 hover:translate-y-1 hover:after:hidden"
         : "cursor-default",
-        inverse ? "bg-black dark:bg-white dark:text-black text-white dark:border-black border-white after:bg-slate-700 dark:after:bg-slate-700": "bg-white dark:bg-black dark:text-white dark:border-white border-black after:bg-black dark:after:bg-slate-700",
+      inverse
+        ? "bg-black dark:bg-white dark:text-black text-white dark:border-black border-white after:bg-black dark:after:bg-slate-500"
+        : "bg-white dark:bg-black dark:text-white dark:border-white border-black after:bg-black dark:after:bg-slate-500",
       "relative flex border-2 after:absolute after:-z-[1] after:overflow-x-hidden after:inset-1 after:h-[101%] after:w-[101%]",
       classes,
     ]}

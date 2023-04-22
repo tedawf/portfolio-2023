@@ -62,7 +62,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
 
       <!-- Bigger photo -->
       <div class="mr-24 hidden justify-center lg:flex xl:mr-48">
-        <Card isCircular={false}>
+        <Card href="/about/" isCircular={false}>
           <Image
             src="/images/headshot.jpg"
             alt="Photo of Ted"
@@ -76,7 +76,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
     <section class="mt-16 lg:hidden">
       <!-- photo -->
       <div class="flex justify-center">
-        <Card isCircular={false}>
+        <Card href="/about/" isCircular={false}>
           <Image
             src="/images/headshot.jpg"
             alt="Photo of Ted"
@@ -98,15 +98,18 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         <br />
 
         <span class="py-8"
-          >I'm always looking for opportunities to learn cool new technologies. <br
-          />
+          >I'm always looking for opportunities to learn about cool new
+          technologies. In my free time, I am probably tinkering on side
+          projects, annoying my fat cat
+          <a href="https://www.instagram.com/gomugomu.cat/">Luffy</a>, and very
+          occasionally, going to the gym.<br />
           <br />🔨<br /><br /> You can see some of the projects I have built below.</span
         >
       </p>
     </section>
 
     <!-- sticky side bar -->
-    <div class="fixed right-5 top-2/3 hidden flex-col gap-2 lg:flex">
+    <div class="fixed right-5 top-2/3 hidden flex-col gap-5 lg:flex">
       <SocialMedia />
     </div>
 
@@ -125,7 +128,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         <Card
           href="/projects/"
           isCircular={false}
-          classes="max-w-[300px] flex justify-center my-10 lg:hidden"
+          classes="max-w-[300px] flex justify-center mt-8 mb-16 lg:hidden"
         >
           <p class="p-4 text-center text-3xl">View more projects</p>
         </Card>
@@ -166,7 +169,8 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         class="max-w-sm py-4 text-center text-2xl font-medium sm:max-w-xl md:text-3xl lg:max-w-4xl"
       >
         Although currently I'm not looking for new opportunities, my inbox is
-        open 24/7. Drop me a message and I'll get to back to you ASAP.
+        open 24/7. Drop me a message and I'll try my best to get to back to you
+        soon.
       </p>
       <Card
         href="/projects/"
