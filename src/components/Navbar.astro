@@ -2,6 +2,7 @@
 import { Image } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 import navData from "../data/navData.json";
+import Card from "./Card.astro";
 ---
 
 <header
@@ -32,7 +33,13 @@ import navData from "../data/navData.json";
       </div>
       <!-- primary nav, hide in mobile -->
       <div class="hidden items-center space-x-10 lg:flex">
-        {navData.map((link) => <a href={link.path}>{link.name}</a>)}
+        {
+          navData.map((link) => (
+            <Card href={link.path} classes="px-3 py-1">
+              {link.name}
+            </Card>
+          ))
+        }
       </div>
       <div class="flex">
         <div class="flex items-center">
@@ -50,10 +57,13 @@ import navData from "../data/navData.json";
           />
         </div>
         <!-- secondary nav, hide in mobile -->
-        <div
+        <!-- <div
           class="hidden items-center border-l-2 border-black bg-black px-6 text-white hover:border-l-2 hover:border-solid hover:border-black hover:bg-cyan-400 hover:text-black dark:border-white dark:bg-white dark:text-black lg:flex xl:px-8"
+        > -->
+        <div
+          class="hidden items-center border-l-2 border-black px-6 dark:border-l-2 dark:border-white lg:flex"
         >
-          <a href="/">Resume</a>
+          <Card inverse={true} href="/" classes="px-3 py-1">Resume</Card>
         </div>
 
         <!-- mobile button, hide in desktop -->
@@ -71,9 +81,11 @@ import navData from "../data/navData.json";
   <!-- mobile menu -->
   <div
     id="mobile-menu"
-    class="fixed right-[-100%] top-0 z-10 h-screen w-4/6 border-l-2 bg-white duration-500 ease-in dark:bg-black"
+    class="fixed right-[-100%] top-0 z-10 h-screen w-4/6 border-l-2 border-black bg-white duration-500 ease-in dark:border-white dark:bg-black"
   >
-    <div class="flex h-[82px] items-center justify-end border-b-2">
+    <div
+      class="flex h-[82px] items-center justify-end border-b-2 border-black dark:border-white"
+    >
       <Icon
         id="mobile-menu-btn"
         name="tabler:letter-x"
@@ -83,7 +95,10 @@ import navData from "../data/navData.json";
     </div>
     {
       navData.map((link) => (
-        <a href={link.path} class="block border-b-2 p-4 md:p-6">
+        <a
+          href={link.path}
+          class="block border-b-2 border-black p-4  dark:border-white md:p-6"
+        >
           {link.name}
         </a>
       ))

@@ -16,20 +16,13 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
 ---
 
 <BaseLayout>
-  <!-- <div class="relative z-10 rounded-lg border-4 border-black p-5 shadow-2xl"> -->
-  <!-- absolute positioned background shadow -->
-  <!-- <div class="absolute left-1 top-1 h-full w-full rounded-lg bg-black"> -->
-  <!-- </div> -->
-  <!-- </div> -->
-  <!-- Social media sidebar -->
-
   <!-- 1. Introduction -->
-  <main>
+  <main class="w-full overflow-x-hidden">
     <section
-      class="section-min-height flex w-screen flex-col items-center justify-center border-b-2 border-black text-center dark:border-white lg:flex-row lg:justify-between"
+      class="section-min-height flex w-full flex-col items-center justify-center border-b-2 border-black text-center dark:border-white lg:flex-row lg:justify-between"
     >
       <div
-        class="flex w-full flex-col items-center lg:ml-28 lg:w-1/2 lg:items-start lg:text-left"
+        class="flex w-full flex-col items-center md:ml-20 lg:w-1/2 lg:items-start lg:text-left xl:ml-40"
       >
         <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
         <h1 class="mb-4 text-3xl font-medium sm:text-4xl xl:text-5xl">
@@ -42,24 +35,33 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
           <span id="tagline" class="text-cyan-500"></span>
           for you.
         </h1>
-        <div class="grid grid-cols-1 place-items-start xl:grid-cols-2 xl:gap-1">
-          <Card isCircular={false} classes="max-w-[300px] ">
+        <div
+          class="mb-8 grid grid-cols-1 place-items-start gap-4 xl:grid-cols-2 xl:gap-1"
+        >
+          <Card
+            href="/"
+            isCircular={false}
+            inverse={true}
+            classes="max-w-[300px] "
+          >
             <p class="px-4 py-3 text-center text-3xl">Resume 📥</p>
           </Card>
           <Card
             href="/contact/"
             isCircular={false}
-            classes="max-w-[300px] xl:ml-8  "
+            classes="max-w-[300px] xl:ml-8 "
           >
             <p class="px-4 py-3 text-center text-3xl">Contact 📩</p>
           </Card>
         </div>
       </div>
       <!-- Social media -->
-      <div class="flex w-screen max-w-lg justify-evenly py-5 lg:hidden">
+      <div class="flex w-full max-w-lg justify-evenly py-5 lg:hidden">
         <SocialMedia />
       </div>
-      <div class="hidden justify-center lg:mr-28 lg:flex">
+
+      <!-- Bigger photo -->
+      <div class="mr-24 hidden justify-center lg:flex xl:mr-48">
         <Card isCircular={false}>
           <Image
             src="/images/headshot.jpg"
@@ -71,7 +73,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         </Card>
       </div>
     </section>
-    <section class="p-4 lg:hidden">
+    <section class="mt-16 lg:hidden">
       <!-- photo -->
       <div class="flex justify-center">
         <Card isCircular={false}>
@@ -131,7 +133,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
       <Card
         href="/projects/"
         isCircular={false}
-        classes="max-w-[300px] lg:flex justify-center my-10 hidden"
+        classes="max-w-[300px] lg:flex justify-center mt-8 mb-16 hidden"
       >
         <p class="p-4 text-center text-3xl">View more projects</p>
       </Card>
