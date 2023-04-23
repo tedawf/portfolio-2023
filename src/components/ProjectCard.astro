@@ -12,7 +12,7 @@ const { title, date, category, author, image, description } = data;
 
 <article class="px-4 py-8">
   <Card isCircular={false} href={url}>
-    <div class="flex h-[500px] flex-col bg-purple-300">
+    <div class="flex h-[500px] flex-col">
       <Image
         src={image.src}
         alt={image.alt}
@@ -20,15 +20,13 @@ const { title, date, category, author, image, description } = data;
         fit="fill"
         aspectRatio={"2:1"}
         format="webp"
-        class="rounded-t-lg lg:rounded-l-lg"
+        class="rounded-t-lg"
       />
-      <figcaption
-        class="flex flex-grow flex-col justify-between bg-cyan-300 p-5 text-left"
-      >
+      <figcaption class="flex flex-grow flex-col justify-between p-5 text-left">
         <h3 class="mb-5 flex font-semibold">
           {title}
         </h3>
-        <p class="mb-5 flex bg-red-200">
+        <p class="mb-5 flex">
           {description}
         </p>
         <div class="flex items-center justify-end pb-3">

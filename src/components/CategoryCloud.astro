@@ -2,6 +2,7 @@
 import { CollectionEntry, getCollection } from "astro:content";
 import filterProjects from "../utils/filterProjects";
 import slugify from "../utils/slugify";
+import Card from "./Card.astro";
 
 const allProjects = await getCollection("projects");
 const filteredProjects: CollectionEntry<"projects">[] =
@@ -25,37 +26,50 @@ const processedCats = allCategories.reduce(
   {}
 );
 
-const { showCount } = Astro.props;
+const sortedCats = Object.keys(processedCats)
+  .sort()
+  .reduce((obj: any, key: any) => {
+    obj[key] = processedCats[key];
+    return obj;
+  }, {});
+
+const { showCount, filter } = Astro.props;
 ---
 
-<div class="parent">
-  <div class="cluster">
-    {
-      Object.entries(processedCats).map(([key, val]) => (
-        <div class="cat">
-          <a href={`/category/${slugify(key)}/`}>
-            #{key} {showCount && `(${val})`}
-          </a>
-        </div>
-      ))
-    }
-    {
-      Object.entries(processedCats).map(([key, val]) => (
-        <div class="cat">
-          <a href={`/category/${slugify(key)}/`}>
-            #{key} {showCount && `(${val})`}
-          </a>
-        </div>
-      ))
-    }
-    {
-      Object.entries(processedCats).map(([key, val]) => (
-        <div class="cat">
-          <a href={`/category/${slugify(key)}/`}>
-            #{key} {showCount && `(${val})`}
-          </a>
-        </div>
-      ))
-    }
-  </div>
+<div
+  class="flex max-w-xl flex-wrap justify-center gap-x-2 gap-y-3 sm:max-w-2xl lg:max-w-3xl"
+>
+  {
+    Object.entries(sortedCats).map(([key, val]) => {
+      if (key !== filter) {
+        return (
+          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5">
+            {key} {showCount && ` (${val})`}
+          </Card>
+        );
+      }
+    })
+  }
+  {
+    Object.entries(sortedCats).map(([key, val]) => {
+      if (key !== filter) {
+        return (
+          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5">
+            {key} {showCount && ` (${val})`}
+          </Card>
+        );
+      }
+    })
+  }
+  {
+    Object.entries(sortedCats).map(([key, val]) => {
+      if (key !== filter) {
+        return (
+          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5">
+            {key} {showCount && ` (${val})`}
+          </Card>
+        );
+      }
+    })
+  }
 </div>

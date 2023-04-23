@@ -1,0 +1,39 @@
+---
+import formatDate from "../utils/formatDate";
+import { Image } from "@astrojs/image/components";
+import Card from "./Card.astro";
+import slugify from "../utils/slugify";
+import Icon from "astro-icon";
+import CategoryCloud from "./CategoryCloud.astro";
+
+const { data, url } = Astro.props;
+
+const { title, date, category, author, image, description } = data;
+---
+
+<article class="px-4 py-2">
+  <Card isCircular={false} href={url}>
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={200}
+      height={200}
+      fit="cover"
+      format="webp"
+      class="hidden rounded-l-lg sm:block"
+    />
+    <figcaption class="flex flex-grow flex-col justify-between p-5 text-left">
+      <div class="flex flex-grow items-center">
+        <h3
+          class="flex text-lg font-bold sm:text-3xl lg:text-lg xl:text-2xl 2xl:text-4xl"
+        >
+          {title}
+        </h3>
+      </div>
+      <div class="flex items-center justify-end">
+        <h4 class="mr-2 font-medium">View Project</h4>
+        <Icon name="tabler:arrow-narrow-right" height={20} />
+      </div>
+    </figcaption>
+  </Card>
+</article>

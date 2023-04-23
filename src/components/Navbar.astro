@@ -20,6 +20,7 @@ import Card from "./Card.astro";
             width={80}
             height={80}
             format="webp"
+            class="block dark:hidden"
           />
           <Image
             id="logo-dark"
@@ -28,6 +29,7 @@ import Card from "./Card.astro";
             width={80}
             height={80}
             format="webp"
+            class="hidden dark:block"
           />
         </a>
       </div>
@@ -42,39 +44,37 @@ import Card from "./Card.astro";
         }
       </div>
       <div class="flex">
-        <div class="flex items-center">
-          <Icon
-            name="tabler:sun"
-            height="40"
-            id="sun"
-            class="mr-4 dark:text-orange-300"
-          />
-          <Icon
-            name="tabler:moon"
-            height="40"
-            id="moon"
-            class="mr-4 text-indigo-700"
-          />
-        </div>
         <!-- secondary nav, hide in mobile -->
-        <!-- <div
-          class="hidden items-center border-l-2 border-black bg-black px-6 text-white hover:border-l-2 hover:border-solid hover:border-black hover:bg-cyan-400 hover:text-black dark:border-white dark:bg-white dark:text-black lg:flex xl:px-8"
-        > -->
+        <div class="mr-6 flex flex-col justify-center">
+          <Card id="sun" inverse={true} classes="p-1 block dark:hidden ">
+            <Icon name="tabler:moon" height="24" />
+          </Card>
+          <Card id="moon" inverse={true} classes="p-1 hidden dark:block">
+            <Icon name="tabler:sun" height="24" />
+          </Card>
+        </div>
         <div
-          class="hidden items-center border-l-2 border-black px-6 dark:border-l-2 dark:border-white lg:flex"
+          class="flex flex-col justify-center border-l-2 border-black px-6 dark:border-l-2 dark:border-white"
         >
-          <Card inverse={true} href="/" classes="px-3 py-1">Resume</Card>
+          <Card
+            color="bg-yellow-300"
+            inverse={true}
+            href="/"
+            classes="px-3 py-1 hidden lg:flex"
+          >
+            Resume
+          </Card>
+          <Card
+            id="mobile-menu-btn"
+            isCircular={false}
+            classes="p-2 block lg:hidden"
+          >
+            <Icon name="tabler:menu" height="28" class="dark:text-white" />
+          </Card>
         </div>
 
         <!-- mobile button, hide in desktop -->
-        <div class="mr-4 flex items-center lg:hidden">
-          <Icon
-            name="tabler:menu"
-            height="40"
-            id="mobile-menu-btn"
-            class="dark:text-white"
-          />
-        </div>
+        <div class="flex items-center lg:hidden"></div>
       </div>
     </div>
   </nav>
@@ -86,18 +86,15 @@ import Card from "./Card.astro";
     <div
       class="flex h-[82px] items-center justify-end border-b-2 border-black dark:border-white"
     >
-      <Icon
-        id="mobile-menu-btn"
-        name="tabler:letter-x"
-        height="40"
-        class="mr-4"
-      />
+      <Card id="mobile-menu-btn" isCircular={false} classes="p-2 mr-6">
+        <Icon name="tabler:letter-x" height="28" />
+      </Card>
     </div>
     {
       navData.map((link) => (
         <a
           href={link.path}
-          class="block border-b-2 border-black p-4  dark:border-white md:p-6"
+          class="block border-b-2 border-black p-4 hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black md:p-6"
         >
           {link.name}
         </a>
@@ -105,7 +102,7 @@ import Card from "./Card.astro";
     }
     <a
       href="/"
-      class="block border-b-2 border-black bg-black p-4 text-white hover:border-b-2 hover:border-black hover:bg-cyan-400 hover:text-black dark:border-white dark:bg-white dark:text-black md:p-6"
+      class="dark:bg-yellow-3 block border-b-2 border-black bg-yellow-300 p-4 hover:bg-black hover:text-white dark:border-white dark:text-black dark:hover:bg-white dark:hover:text-black md:p-6"
     >
       Resume
     </a>
@@ -125,32 +122,17 @@ import Card from "./Card.astro";
   btn?.addEventListener("click", toggleMenu);
 
   // Icons
-  const sunIcon = document.querySelector("#sun");
-  const moonIcon = document.querySelector("#moon");
-  const logoWhite = document.querySelector("#logo-white");
-  const logoDark = document.querySelector("#logo-dark");
+  const sunIcon = document.querySelectorAll("#sun");
+  const moonIcon = document.querySelectorAll("#moon");
 
   // Preference
   const userTheme = localStorage.getItem("theme");
   const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  // Icon toggle
-  const iconToggle = () => {
-    moonIcon?.classList.toggle("hidden");
-    sunIcon?.classList.toggle("hidden");
-    logoWhite?.classList.toggle("hidden");
-    logoDark?.classList.toggle("hidden");
-  };
-
   // Initial theme check
   const themeCheck = () => {
     if (userTheme === "dark" || (!userTheme && systemTheme)) {
       document.documentElement.classList.add("dark");
-      moonIcon?.classList.add("hidden");
-      logoWhite?.classList.add("hidden");
-    } else {
-      sunIcon?.classList.add("hidden");
-      logoDark?.classList.add("hidden");
     }
   };
 
@@ -159,21 +141,17 @@ import Card from "./Card.astro";
     if (document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
-      iconToggle();
     } else {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-      iconToggle();
     }
   };
 
   // Click buttons
-  sunIcon?.addEventListener("click", () => {
-    themeSwitch();
-  });
-  moonIcon?.addEventListener("click", () => {
-    themeSwitch();
-  });
+  sunIcon?.forEach((btn) => btn.addEventListener("click", () => themeSwitch()));
+  moonIcon?.forEach((btn) =>
+    btn.addEventListener("click", () => themeSwitch())
+  );
 
   // Check theme on load
   themeCheck();

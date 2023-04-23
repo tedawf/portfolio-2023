@@ -25,7 +25,7 @@ export default function jsonLDGenerator({ type, post, url }: any) {
   }
   return `<script type="application/ld+json">
       {
-      "@context": "https://schema.org/",
+      "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "${siteData.title}",
       "url": "${import.meta.env.SITE}"

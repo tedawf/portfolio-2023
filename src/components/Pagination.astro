@@ -1,8 +1,55 @@
 ---
-const { prevUrl, nextUrl } = Astro.props;
+import { Icon } from "astro-icon";
+import Card from "./Card.astro";
+
+const { prevUrl, nextUrl, currentPage, totalPages } = Astro.props;
 ---
 
-<nav aria-label="Blog pages">
-  {prevUrl && <a href={prevUrl}>Previous</a>}
-  {nextUrl && <a href={nextUrl}>Next</a>}
+<nav>
+  <div
+    class="flex w-screen max-w-xs items-center px-4 font-medium sm:max-w-md lg:max-w-xl"
+  >
+    {
+      prevUrl && (
+        <Card href={prevUrl} classes="px-2 py-1 flex items-center gap-1">
+          <Icon name="tabler:arrow-left" height={20} /> Previous
+        </Card>
+      )
+    }
+    <div class="flex flex-grow justify-evenly">
+      {
+        [...Array(totalPages)].map((e, i) => {
+          ++i;
+
+          if (currentPage === i) {
+            return (
+              <Card
+                href={`/projects${i === 1 ? "" : "/" + i}`}
+                inverse={true}
+                classes="px-2"
+              >
+                {i}
+              </Card>
+            );
+          } else {
+            return (
+              <Card
+                href={`/projects${i === 1 ? "" : "/" + i}`}
+                classes="px-2 hidden sm:block"
+              >
+                {i}
+              </Card>
+            );
+          }
+        })
+      }
+    </div>
+    {
+      nextUrl && (
+        <Card href={nextUrl} classes="px-2 py-1 flex items-center gap-1 ">
+          Next <Icon name="tabler:arrow-right" height={20} />
+        </Card>
+      )
+    }
+  </div>
 </nav>

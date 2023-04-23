@@ -5,6 +5,7 @@ import Pagination from "../../components/Pagination.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import filterProjects from "../../utils/filterProjects";
+import SocialMedia from "../../components/SocialMedia.astro";
 
 export async function getStaticPaths({ paginate }: any) {
   const allProjects = await getCollection("projects");
@@ -19,20 +20,32 @@ export async function getStaticPaths({ paginate }: any) {
 const { page } = Astro.props;
 ---
 
-<BaseLayout>
-  <section class="container" aria-label="My Projects">
-    <h1 class="h1">My Projects</h1>
-    <div class="post-container">
+<BaseLayout title="My Projects">
+  <section class="section-min-height flex flex-col items-center justify-center">
+    <h1 class="mb-4 text-center text-5xl font-bold">My Projects</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:mx-14 lg:grid-cols-3">
       {
         page.data.map((project: any) => (
-          <ProjectCard data={project.data} url={project.slug} tagType="h2" />
+          <ProjectCard data={project.data} url={project.slug} />
         ))
       }
     </div>
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-    <aside class="container" aria-label="Blog categories">
-      <h2 class="h3">Project Categories</h2>
+    <div
+      class="flex w-full justify-center border-b-2 border-black pb-4 dark:border-white"
+    >
+      <Pagination
+        prevUrl={page.url.prev}
+        nextUrl={page.url.next}
+        currentPage={page.currentPage}
+        totalPages={page.lastPage}
+      />
+    </div>
+    <aside class="my-6">
+      <!-- <h2 class="mb-5 text-center text-2xl font-medium">Project Categories</h2> -->
       <CategoryCloud showCount={true} />
     </aside>
   </section>
+  <div class="fixed right-3 top-2/3 hidden flex-col gap-5 lg:flex">
+    <SocialMedia />
+  </div>
 </BaseLayout>

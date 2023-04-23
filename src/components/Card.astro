@@ -1,6 +1,8 @@
 ---
 interface Props {
+  id?: string;
   href?: string;
+  color?: string;
   isCircular?: boolean;
   showHover?: boolean;
   inverse?: boolean;
@@ -8,7 +10,9 @@ interface Props {
 }
 
 const {
+  id,
   href,
+  color = "",
   isCircular = true,
   showHover = true,
   inverse = false,
@@ -18,6 +22,7 @@ const {
 
 <div class="relative z-[1]">
   <a
+    id={id}
     href={href}
     class:list={[
       isCircular
@@ -26,9 +31,14 @@ const {
       showHover
         ? "hover:translate-x-1 hover:translate-y-1 hover:after:hidden"
         : "cursor-default",
-      inverse
-        ? "bg-black dark:bg-white dark:text-black text-white dark:border-black border-white after:bg-black dark:after:bg-slate-500"
-        : "bg-white dark:bg-black dark:text-white dark:border-white border-black after:bg-black dark:after:bg-slate-500",
+      color === ""
+        ? inverse
+          ? "bg-black dark:bg-white text-white dark:text-black"
+          : "bg-white dark:bg-black"
+        : color + " " + "text-black",
+      inverse && color === ""
+        ? "dark:border-black border-white after:bg-black dark:after:bg-slate-500 "
+        : "dark:border-white border-black after:bg-black dark:after:bg-slate-500 ",
       "relative flex border-2 after:absolute after:-z-[1] after:overflow-x-hidden after:inset-1 after:h-[101%] after:w-[101%]",
       classes,
     ]}
