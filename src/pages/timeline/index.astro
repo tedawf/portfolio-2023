@@ -27,11 +27,11 @@ const allYears = Object.keys(formattedJobs).reverse();
       allYears.map((year) => (
         <section class="w-full">
           <div class="sticky top-[82px] z-[9] flex w-full justify-center border-b-2 border-black bg-white py-3 dark:border-white dark:bg-black">
-            <h2 class="flex w-full max-w-6xl py-4 text-6xl font-black tracking-widest">
+            <h2 class="flex w-full max-w-6xl px-8 py-4 text-6xl font-black tracking-widest">
               {year}
             </h2>
           </div>
-          <div class="-z-10 flex w-full flex-col items-center border-b-2 border-black  dark:border-white">
+          <div class="-z-10 flex w-full flex-col items-center border-b-2 border-black px-8 dark:border-white">
             {formattedJobs[Number(year)].map((job: any) => (
               <div class="mx-7 flex w-full max-w-5xl border-l-4 border-black pb-10 dark:border-white sm:max-w-2xl  lg:max-w-4xl">
                 <article class="relative">
