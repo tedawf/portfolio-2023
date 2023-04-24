@@ -13,7 +13,7 @@ export async function getStaticPaths({ paginate }: any) {
     filterProjects(allProjects);
 
   return paginate(filteredProjects, {
-    pageSize: 2,
+    pageSize: 3,
   });
 }
 

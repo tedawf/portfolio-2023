@@ -7,6 +7,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import filterProjects from "../utils/filterProjects";
 import { Image } from "@astrojs/image/components";
 import CategoryCloud from "../components/CategoryCloud.astro";
+import { Icon } from "astro-icon";
 
 const allProjects = await getCollection("projects");
 const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
@@ -52,7 +53,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
             isCircular={false}
             classes="max-w-[300px] xl:ml-8"
           >
-            <p class="px-4 py-3 text-center text-3xl">Contact 📩</p>
+            <p class="px-4 py-3 text-center text-3xl">Contact ✉️</p>
           </Card>
         </div>
       </div>
@@ -91,22 +92,24 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
     <section
       class="flex flex-col items-center border-b-2 border-black py-16 dark:border-white"
     >
-      <p
+      <div
         class="max-w-sm text-center text-3xl font-medium sm:max-w-xl lg:max-w-4xl"
       >
-        <span class="py-8">👆<br /><br />That's me!</span>
-        <br />
-        <br />
-
-        <span class="py-8"
-          >I'm always looking for opportunities to learn about cool new
-          technologies. In my free time, I am probably tinkering on side
+        <h2 class="py-4">👆<br /><br />That's me!</h2>
+        <p class="py-8">
+          🔍<br /><br />I'm always looking for opportunities to learn about cool
+          new technologies. In my free time, I am probably tinkering on side
           projects, annoying my fat cat
-          <a href="https://www.instagram.com/gomugomu.cat">Luffy</a>, and very
-          occasionally, going to the gym.<br />
-          <br />🔨<br /><br /> You can see some of the projects I have built below.</span
-        >
-      </p>
+          <a
+            href="https://www.instagram.com/gomugomu.cat"
+            class="text-cyan-500 hover:underline hover:underline-offset-8"
+            >@Luffy</a
+          >, and very occasionally, going to the gym.
+        </p>
+        <h3 class="py-4">
+          🛠️<br /><br />You can see some of the projects I have built below.
+        </h3>
+      </div>
     </section>
 
     <!-- sticky side bar -->
@@ -139,7 +142,10 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         isCircular={false}
         classes="max-w-[350px] lg:flex justify-center mt-8 mb-16 hidden"
       >
-        <p class="p-4 text-center text-3xl">View more projects ➡️</p>
+        <p class="flex items-center gap-2 p-4 text-center text-3xl">
+          View more projects
+          <Icon name="tabler:arrow-right" height={30} />
+        </p>
       </Card>
     </section>
 
@@ -170,15 +176,15 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         class="max-w-sm py-4 text-center text-2xl font-medium sm:max-w-xl md:text-3xl lg:max-w-4xl"
       >
         Although I'm not looking for new opportunities at the moment, my inbox
-        will always be open 24/7. Drop me a message and I'll get to back to you
-        ASAP.
+        will always be open 24/7. <br /><br /> If you have any questions or just
+        want to say hello, drop me a message and I'll get to back to you ASAP.
       </p>
       <Card
         href="/projects"
         isCircular={false}
         classes="max-w-[300px] flex justify-center mt-8 mb-16"
       >
-        <p class="p-4 text-center text-3xl">Contact Me 📩</p>
+        <p class="p-4 text-center text-3xl">Contact Me ✉️</p>
       </Card>
     </section>
   </main>
