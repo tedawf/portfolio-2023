@@ -1,0 +1,88 @@
+[
+  {
+    "start": "2016-02",
+    "end": "2016-04",
+    "title": "Game Developer",
+    "company": "Helix Leisure",
+    "url": "https://helixleisure.com/careers",
+    "image": "/images/helix-logo.jpg",
+    "type": "Internship",
+    "details": [
+      "Worked together with an 3D artist on a kids arcade game prototype made in Unity.",
+      "Introduced to essential communication tools such as JIRA, Git, Slack and Scrum.",
+      "Experience professional teamwork and being part of a game development team and learn the importance of 'Beer Fridays'"
+    ]
+  },
+  {
+    "start": "2019-05",
+    "end": "2019-08",
+    "title": "Software Engineer",
+    "company": "Activate Interactive",
+    "image": "/images/activate-logo.png",
+    "url": "https://www.activate.sg/work-with-us",
+    "type": "Internship",
+    "details": [
+      "Developed both iOS/Android mobile app for Republic Polytechnic (RP) using React Native.",
+      "Started prototyping an internal automation project using UiPath, VB.Net and C#, to reduce manual data entry for finance department.",
+      "Research was then presented to the company executives to purchase software licenses and officially setup an automation workflow in the company."
+    ]
+  },
+  {
+    "start": "2020-09",
+    "end": "2022-05",
+    "title": "Teaching Assistant / Grader",
+    "company": "DigiPen",
+    "image": "/images/digipen-logo.png",
+    "url": "https://www.digipen.edu/student-portal/student-life/student-engagement-opportunities",
+    "type": "Part-time",
+    "details": [
+      "Provided detailed feedback on assignments, ensuring students know why they lose marks.",
+      "Engaged students in private 1-to-1 online consultations daily during Covid.",
+      "Wrote progress reports and feedback to administration in order to accommodate students' academic needs and goals."
+    ]
+  },
+  {
+    "start": "2022-05",
+    "end": "2022-12",
+    "title": "Application Developer (Blockchain)",
+    "company": "DBS",
+    "image": "/images/dbs-logo.png",
+    "url": "https://www.dbs.com/careers/internships/young-seeder-internship",
+    "type": "Internship",
+    "details": [
+      "Developed backend services for digital assets custody and exchange using Spring Boot.",
+      "Implemented a login and dashboard web app in 3 weeks for a DBS Metaverse event using Angular.",
+      "Experimented with automated software testing and trained a small team using Selenium."
+    ]
+  },
+  {
+    "start": "2023-04",
+    "end": "2023-06",
+    "image": "/images/sit-logo.jpg",
+    "title": "Software Developer (Virtual Campus)",
+    "company": "SIT",
+    "url": "https://www.singaporetech.edu.sg",
+    "type": "Contract",
+    "details": ["Will be updated soon."]
+  },
+  {
+    "start": "2023-04",
+    "end": "2023-07",
+    "title": "Software Developer (Immersification)",
+    "company": "SIT",
+    "image": "/images/sit-logo.jpg",
+    "url": "https://www.immersification.org/about",
+    "type": "Contract",
+    "details": ["Will be updated soon."]
+  },
+  {
+    "start": "2023-07",
+    "end": "Present",
+    "image": "/images/dbs-logo.png",
+    "title": "Application Developer (Blockchain)",
+    "company": "DBS",
+    "url": "https://www.dbs.com/careers/structured-programmes/seed-programme",
+    "type": "Full-time",
+    "details": ["Will be updated soon."]
+  }
+]

@@ -8,6 +8,10 @@
     "path": "/projects"
   },
   {
+    "name": "Timeline",
+    "path": "/timeline"
+  },
+  {
     "name": "Contact",
     "path": "/contact"
   }

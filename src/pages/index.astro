@@ -8,6 +8,8 @@ import filterProjects from "../utils/filterProjects";
 import { Image } from "@astrojs/image/components";
 import CategoryCloud from "../components/CategoryCloud.astro";
 import { Icon } from "astro-icon";
+import HoverLink from "../components/HoverLink.astro";
+import SideNav from "../components/SideNav.astro";
 
 const allProjects = await getCollection("projects");
 const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
@@ -100,11 +102,9 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
           🔍<br /><br />I'm always looking for opportunities to learn about cool
           new technologies. In my free time, I am probably tinkering on side
           projects, annoying my fat cat
-          <a
-            href="https://www.instagram.com/gomugomu.cat"
-            class="text-cyan-500 hover:underline hover:underline-offset-8"
-            >@Luffy</a
-          >, and very occasionally, going to the gym.
+          <HoverLink href="https://www.instagram.com/gomugomu.cat">
+            @Luffy
+          </HoverLink>, and very occasionally, going to the gym.
         </p>
         <h3 class="py-4">
           🛠️<br /><br />You can see some of the projects I have built below.
@@ -112,10 +112,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
       </div>
     </section>
 
-    <!-- sticky side bar -->
-    <div class="fixed right-3 top-2/3 hidden flex-col gap-5 lg:flex">
-      <SocialMedia />
-    </div>
+    <SideNav />
 
     <!-- Featured projects -->
     <section
@@ -184,7 +181,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         isCircular={false}
         classes="max-w-[300px] flex justify-center mt-8 mb-16"
       >
-        <p class="p-4 text-center text-3xl">Contact Me ✉️</p>
+        <p class="p-4 text-center text-3xl">Say Hello 👋</p>
       </Card>
     </section>
   </main>

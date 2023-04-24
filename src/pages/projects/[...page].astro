@@ -3,9 +3,9 @@ import { CollectionEntry, getCollection } from "astro:content";
 import CategoryCloud from "../../components/CategoryCloud.astro";
 import Pagination from "../../components/Pagination.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
+import SideNav from "../../components/SideNav.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import filterProjects from "../../utils/filterProjects";
-import SocialMedia from "../../components/SocialMedia.astro";
 
 export async function getStaticPaths({ paginate }: any) {
   const allProjects = await getCollection("projects");
@@ -45,7 +45,5 @@ const { page } = Astro.props;
       <CategoryCloud showCount={true} />
     </aside>
   </section>
-  <div class="fixed right-3 top-2/3 hidden flex-col gap-5 lg:flex">
-    <SocialMedia />
-  </div>
+  <SideNav />
 </BaseLayout>

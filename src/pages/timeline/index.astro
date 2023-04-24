@@ -1,0 +1,100 @@
+---
+import { Image } from "@astrojs/image/components";
+import Card from "../../components/Card.astro";
+import HoverLink from "../../components/HoverLink.astro";
+import jobs from "../../data/jobs.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { array } from "astro/zod";
+import SideNav from "../../components/SideNav.astro";
+
+const formattedJobs: Record<number, any[]> = {};
+
+jobs.forEach((job) => {
+  const year = new Date(job.start).getFullYear();
+  if (!formattedJobs[year]) {
+    formattedJobs[year] = [job];
+  } else {
+    formattedJobs[year].unshift(job); // opposite of push()
+  }
+});
+
+const allYears = Object.keys(formattedJobs).reverse();
+---
+
+<BaseLayout title="Timeline" showFooterBorder={false}>
+  <div class="section-min-height flex flex-col">
+    {
+      allYears.map((year) => (
+        <section class="w-full">
+          <div class="sticky top-[82px] z-[9] flex w-full justify-center border-b-2 border-black bg-white py-3 dark:border-white dark:bg-black">
+            <h2 class="flex w-full max-w-6xl py-4 text-6xl font-black tracking-widest">
+              {year}
+            </h2>
+          </div>
+          <div class="-z-10 flex w-full flex-col items-center border-b-2 border-black  dark:border-white">
+            {formattedJobs[Number(year)].map((job: any) => (
+              <div class="mx-7 flex w-full max-w-5xl border-l-4 border-black pb-10 dark:border-white sm:max-w-2xl  lg:max-w-4xl">
+                <article class="relative">
+                  <Card
+                    href={job.url}
+                    inverse={false}
+                    classes="w-10 h-10 absolute -left-[26px] top-[62px] bg-white"
+                  >
+                    <Image
+                      src={job.image}
+                      alt={`${job.company} logo`}
+                      width={20}
+                      height={20}
+                      quality={100}
+                      fit="cover"
+                      class="h-full w-full rounded-full p-1"
+                    />
+                  </Card>
+                  <div class="pl-10">
+                    <span class="text-sm font-bold tracking-widest text-gray-400 ">
+                      {job.start} to {job.end}
+                      &#x2022;
+                      <span>
+                        {new Date(job.end).getTime()
+                          ? `${
+                              new Date(job.end).getMonth() -
+                              new Date(job.start).getMonth() +
+                              12 *
+                                (new Date(job.end).getFullYear() -
+                                  new Date(job.start).getFullYear())
+                            } months`
+                          : `${
+                              new Date().getMonth() -
+                              new Date(job.start).getMonth() +
+                              12 *
+                                (new Date().getFullYear() -
+                                  new Date(job.start).getFullYear())
+                            } months`}
+                      </span>
+                      &#x2022;
+                      {job.type}
+                    </span>
+                    <h3 class="mb-2 text-3xl font-bold tracking-wide">
+                      {job.title}
+                      <span class="font-semibold">
+                        <HoverLink href={job.url}>@{job.company}</HoverLink>
+                      </span>
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      {job.details.map((detail: string) => (
+                        <li>
+                          <p class="text-xl">{detail}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+  <SideNav />
+</BaseLayout>
