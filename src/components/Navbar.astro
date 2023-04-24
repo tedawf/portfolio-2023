@@ -46,10 +46,16 @@ import Card from "./Card.astro";
       <div class="flex">
         <!-- secondary nav, hide in mobile -->
         <div class="mr-6 flex flex-col justify-center">
-          <Card id="sun" classes="p-1 block dark:hidden text-purple-700">
+          <Card
+            id="sun"
+            classes="p-1 block dark:hidden bg-indigo-400 text-white"
+          >
             <Icon name="tabler:moon" height="24" />
           </Card>
-          <Card id="moon" classes="p-1 hidden dark:block text-orange-300">
+          <Card
+            id="moon"
+            classes="p-1 hidden dark:block dark:bg-orange-300 dark:text-black"
+          >
             <Icon name="tabler:sun" height="24" />
           </Card>
         </div>
@@ -109,7 +115,7 @@ import Card from "./Card.astro";
   </div>
 </header>
 
-<script>
+<script is:inline>
   const btn = document.querySelector("#mobile-menu-btn");
   const menu = document.querySelector("#mobile-menu");
 

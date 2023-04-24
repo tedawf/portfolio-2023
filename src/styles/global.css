@@ -3,14 +3,26 @@
 @tailwind utilities;
 
 @layer utilities {
-  .section-min-height {
+  .min-h-no-footer {
     /* Minus navbar height */
     min-height: calc(100vh - 80px);
+  }
+  .min-h-footer {
+    /* Minus navbar height */
+    min-height: calc(100vh - 80px - 140px);
   }
 }
 
 @layer components {
   .text-gradient {
     @apply bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%;
+  }
+
+  .quote-before {
+    @apply before:absolute before:left-0 before:top-0 before:translate-x-2 before:translate-y-2 before:transform before:font-serif before:text-9xl before:content-['\201C'] dark:before:text-white dark:after:text-white;
+  }
+
+  .quote-after {
+    @apply after:absolute after:-bottom-20 after:right-0 after:-translate-x-2 after:-translate-y-2 after:transform after:font-serif after:text-9xl after:content-['\201D'] dark:before:text-white dark:after:text-white;
   }
 }

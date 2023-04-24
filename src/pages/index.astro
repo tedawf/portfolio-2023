@@ -22,7 +22,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
   <!-- 1. Introduction -->
   <main class="w-full overflow-x-hidden">
     <section
-      class="section-min-height flex w-full flex-col items-center justify-center border-b-2 border-black text-center dark:border-white lg:flex-row lg:justify-between"
+      class="min-h-footer flex w-full flex-col items-center justify-center border-b-2 border-black text-center dark:border-white lg:flex-row lg:justify-between"
     >
       <div
         class="flex w-full flex-col items-center md:ml-20 lg:w-1/2 lg:items-start lg:text-left xl:ml-40"
@@ -209,6 +209,6 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
     loop: true,
     backDelay: 2500,
     cursorChar: "|",
-    shuffle: false,
+    shuffle: true,
   });
 </script>
