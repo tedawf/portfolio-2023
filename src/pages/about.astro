@@ -33,8 +33,12 @@ import SideNav from "../components/SideNav.astro";
         </Card>
       </div>
       <div class="text-center lg:text-left">
-        <div id="greet" class="min-h-[144px] font-bold"></div>
-        <p class="text-xl font-medium lg:pt-24">
+        <div
+          id="greet"
+          class="min-h-[144px] bg-slate-300 font-bold lg:min-h-[180px]"
+        >
+        </div>
+        <p class="pt-10 text-xl font-medium lg:pt-24">
           I am a software developer currently in 🇸🇬 Singapore.
           <br />
           <br />
@@ -59,7 +63,7 @@ import SideNav from "../components/SideNav.astro";
     class="flex flex-col border-b-2 border-black dark:border-white lg:flex-row"
   >
     <figure
-      class="flex w-screen flex-col items-center border-b-2 border-black p-8 dark:border-white lg:w-5/12 lg:border-b-0 lg:border-r-2"
+      class="flex w-screen flex-col items-center border-b-2 border-black p-8 dark:border-white lg:w-5/12 lg:border-b-0 lg:border-r-2 lg:px-16"
     >
       <blockquote
         class="relative flex h-full max-w-3xl items-center px-24 py-12 dark:bg-black lg:px-8"
@@ -96,7 +100,7 @@ import SideNav from "../components/SideNav.astro";
       </p>
     </figure>
     <figure
-      class="flex w-screen flex-col items-center border-b-2 border-black p-8 dark:border-white lg:w-5/12 lg:border-b-0 lg:border-l-2"
+      class="flex w-screen flex-col items-center border-b-2 border-black p-8 dark:border-white lg:w-5/12 lg:border-b-0 lg:border-l-2 lg:px-16"
     >
       <blockquote
         class="relative flex h-full max-w-3xl items-center px-24 py-12 dark:bg-black lg:px-8"
@@ -125,10 +129,12 @@ import SideNav from "../components/SideNav.astro";
     typeSpeed: 80,
     cursorChar: "",
     strings: [
-      "<h1 class='text-5xl lg:text-7xl text-gradient bg-clip-text text-transparent'>Hello^200o^300o^500o^900!</h1> ^400 <br/><h2 class='text-4xl lg:text-5xl'>👈 This is Ted.</h2>",
+      "<h1 class='text-5xl lg:text-7xl text-gradient bg-clip-text text-transparent'>Hello^200o^300o^500o^900!</h1> ^400 <br/><h2 class='text-4xl lg:text-5xl'>🤝 This is Ted.</h2>",
+      "<h1 class='text-5xl lg:text-7xl text-gradient bg-clip-text text-transparent'>Helloooo!</h1><br/><h2 class='text-3xl lg:text-4xl'>🙏 Welcome to my humble portfolio.</h2>",
     ],
     loop: true,
     backDelay: 3000,
     backSpeed: 40,
+    smartBackspace: true,
   });
 </script>
