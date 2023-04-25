@@ -25,4 +25,8 @@
   .quote-after {
     @apply after:absolute after:-bottom-20 after:right-0 after:-translate-x-2 after:-translate-y-2 after:transform after:font-serif after:text-9xl after:content-['\201D'] dark:before:text-white dark:after:text-white;
   }
+
+  /* .card-focus {
+    @apply;
+  } */
 }

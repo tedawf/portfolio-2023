@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon";
+import Card from "../components/Card.astro";
+import SocialMedia from "../components/SocialMedia.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SideNav from "../components/SideNav.astro";
+---
+
+<BaseLayout>
+  <section class="min-h-footer flex w-full items-center justify-evenly">
+    <div class="mx-16 flex w-full max-w-5xl flex-col">
+      <h1 class="pb-4 text-7xl font-bold lg:pb-8">Contact</h1>
+      <form
+        class="flex w-full max-w-5xl flex-col gap-5"
+        name="contact"
+        method="POST"
+        data-netlify="true"
+      >
+        <!-- Will be injected by Netlify -->
+        <!-- <input type="hidden" name="form-name" value="contact" /> -->
+        <div class="flex w-full flex-col gap-8 md:flex-row">
+          <p class="flex flex-grow flex-col">
+            <label class="pb-2 text-3xl font-medium">Your Name:</label>
+            <input
+              class="dark:black rounded-xl border-2 border-black p-2 text-2xl dark:border-white dark:bg-black md:text-3xl"
+              type="text"
+              name="name"
+              required
+            />
+          </p>
+          <p class="flex flex-grow flex-col">
+            <label class="pb-2 text-3xl font-medium">Your Email:</label>
+            <input
+              class="dark:black rounded-xl border-2 border-black p-2 text-2xl dark:border-white dark:bg-black md:text-3xl"
+              type="email"
+              name="email"
+              required
+            />
+          </p>
+        </div>
+        <p class="flex flex-col">
+          <label class="pb-2 text-3xl font-medium">Message:</label>
+
+          <textarea
+            class="dark:black rounded-xl border-2 border-black p-2 text-2xl dark:border-white dark:bg-black md:text-3xl"
+            name="message"
+            rows="5"
+            required></textarea>
+        </p>
+        <div class="flex justify-center pr-1 pt-4 md:justify-end">
+          <Card isCircular={false}>
+            <button
+              class="flex w-full items-center p-4 text-center text-3xl font-semibold"
+              type="submit"
+            >
+              <span class="pr-4">Say Hello</span>
+              <Icon name="tabler:send" height={30} />
+            </button>
+          </Card>
+        </div>
+      </form>
+    </div>
+    <SideNav />
+  </section>
+</BaseLayout>
