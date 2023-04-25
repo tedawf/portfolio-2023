@@ -6,10 +6,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SideNav from "../components/SideNav.astro";
 ---
 
-<BaseLayout>
+<BaseLayout title="Contact" description="Contact Form">
   <section class="min-h-footer flex w-full items-center justify-evenly">
     <div class="mx-16 flex w-full max-w-5xl flex-col">
-      <h1 class="pb-4 text-6xl font-bold lg:pb-8">Contact</h1>
+      <h1 class="pb-8 text-6xl font-bold underline underline-offset-8 lg:pb-12">
+        Contact
+      </h1>
       <form
         class="flex w-full max-w-5xl flex-col gap-5"
         name="contact"
