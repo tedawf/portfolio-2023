@@ -6,7 +6,7 @@ import Card from "./Card.astro";
 
 {
   socialData.map((social) => (
-    <Card href={social.link} classes="p-2">
+    <Card href={social.link} target="_blank" classes="p-2">
       <Icon name={social.icon} width={20} />
     </Card>
   ))

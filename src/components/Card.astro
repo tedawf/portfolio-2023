@@ -3,6 +3,7 @@ interface Props {
   id?: string;
   href?: string;
   color?: string;
+  target?: string;
   isCircular?: boolean;
   showHover?: boolean;
   inverse?: boolean;
@@ -13,6 +14,7 @@ const {
   id,
   href,
   color = "",
+  target = "_self",
   isCircular = true,
   showHover = true,
   inverse = false,
@@ -24,6 +26,7 @@ const {
   <a
     id={id}
     href={href}
+    target={target}
     class:list={[
       isCircular
         ? "rounded-full after:rounded-full"
