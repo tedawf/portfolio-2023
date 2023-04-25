@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon";
+import Card from "../components/Card.astro";
+import SocialMedia from "../components/SocialMedia.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SideNav from "../components/SideNav.astro";
+---
+
+<BaseLayout>
+  <section
+    class="min-h-footer flex w-full flex-col items-center justify-center"
+  >
+    <h1
+      class="text-gradient bg-clip-text pb-4 text-6xl font-bold text-transparent"
+    >
+      Success!
+    </h1>
+    <p class="py-10 text-center text-3xl font-medium">
+      Your message has been sent!
+      <br />
+      Fortunately, I do check my emails at least once a year.
+      <br />
+
+      <br />
+Expect a reply from me soon!
+    </p>
+    <Card href="/" isCircular={false} classes="flex w-full items-center p-4 text-center text-3xl font-semibold">
+        Lucky me!🍀
+    </Card>
+    <SideNav />
+  </section>
+</BaseLayout>
