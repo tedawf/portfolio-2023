@@ -22,60 +22,73 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
   <!-- 1. Introduction -->
   <main class="w-full overflow-x-hidden">
     <section
-      class="min-h-footer flex w-full flex-col items-center justify-center border-b-2 border-black text-center dark:border-white lg:flex-row lg:justify-between"
+      class="min-h-no-footer flex w-full flex-col items-center justify-center border-b-2 border-black text-center dark:border-white lg:justify-between"
     >
       <div
-        class="flex w-full flex-col items-center lg:ml-20 lg:w-1/2 lg:items-start lg:text-left xl:ml-40"
+        class="min-h-footer flex w-full flex-col items-center justify-center lg:flex-row"
       >
-        <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
-        <h1 class="mb-4 text-3xl font-medium sm:text-4xl xl:text-5xl">
-          Ang Wei Feng (Ted).
-        </h1>
-        <h1
-          class="mb-4 min-h-[80px] text-3xl font-medium sm:text-4xl xl:mb-8 xl:min-h-[96px] xl:text-5xl"
-        >
-          I can
-          <span id="tagline" class="font-bold text-green-500"></span>
-          for you.
-        </h1>
         <div
-          class="mb-8 grid grid-cols-1 place-items-start gap-4 lg:mt-12 xl:grid-cols-2 xl:gap-1"
+          class="flex w-full flex-col items-center lg:ml-20 lg:w-1/2 lg:items-start lg:text-left xl:ml-40"
         >
-          <Card
-            href="/"
-            isCircular={false}
-            inverse={true}
-            classes="max-w-[300px]"
-            color="bg-yellow-300"
+          <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
+          <h1 class="mb-4 text-3xl font-medium sm:text-4xl xl:text-5xl">
+            Ang Wei Feng (Ted).
+          </h1>
+          <h1
+            class="mb-4 min-h-[80px] text-3xl font-medium sm:text-4xl xl:mb-8 xl:min-h-[96px] xl:text-5xl"
           >
-            <p class="px-4 py-3 text-center text-3xl">Resume 📥</p>
-          </Card>
-          <Card
-            href="/contact"
-            isCircular={false}
-            classes="max-w-[300px] xl:ml-8"
+            Let me
+            <span id="tagline" class="font-bold text-green-500"></span>
+            for you.
+          </h1>
+          <div
+            class="mb-8 grid grid-cols-1 place-items-start gap-4 lg:mt-12 xl:grid-cols-2 xl:gap-1"
           >
-            <p class="px-4 py-3 text-center text-3xl">Contact ✉️</p>
+            <Card
+              href="/"
+              isCircular={false}
+              inverse={true}
+              classes="max-w-[300px]"
+              color="bg-yellow-300"
+            >
+              <p class="px-4 py-3 text-center text-3xl">Resume 📥</p>
+            </Card>
+            <Card
+              href="/contact"
+              isCircular={false}
+              classes="max-w-[300px] xl:ml-8"
+            >
+              <p class="px-4 py-3 text-center text-3xl">Contact ✉️</p>
+            </Card>
+          </div>
+        </div>
+        <!-- Social media -->
+        <div class="flex w-full max-w-lg justify-evenly py-5 lg:hidden">
+          <SocialMedia />
+        </div>
+        <!-- Bigger photo -->
+        <div class="mr-24 hidden justify-center lg:flex xl:mr-48">
+          <Card href="/about" isCircular={false}>
+            <Image
+              src="/images/headshot.jpg"
+              alt="Photo of Ted"
+              width={450}
+              height={450}
+              class="rounded-lg"
+            />
           </Card>
         </div>
       </div>
-      <!-- Social media -->
-      <div class="flex w-full max-w-lg justify-evenly py-5 lg:hidden">
-        <SocialMedia />
-      </div>
-
-      <!-- Bigger photo -->
-      <div class="mr-24 hidden justify-center lg:flex xl:mr-48">
-        <Card href="/about" isCircular={false}>
-          <Image
-            src="/images/headshot.jpg"
-            alt="Photo of Ted"
-            width={450}
-            height={450}
-            class="rounded-lg"
-          />
-        </Card>
-      </div>
+      <Icon
+        name="tabler:caret-down"
+        height={30}
+        class="animate-bounce lg:hidden"
+      />
+      <Icon
+        name="tabler:caret-down"
+        height={30}
+        class="mb-10 hidden animate-bounce lg:block"
+      />
     </section>
     <section class="mt-16 lg:hidden">
       <!-- photo -->
@@ -208,7 +221,7 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
     backSpeed: 50,
     loop: true,
     backDelay: 2500,
-    cursorChar: "|",
+    cursorChar: "_",
     shuffle: true,
   });
 </script>
