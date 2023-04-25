@@ -1,7 +1,7 @@
 ---
 import { Image } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
-import navData from "../data/navData.json";
+import navLinks from "../data/navLinks.json";
 import Card from "./Card.astro";
 ---
 
@@ -36,7 +36,7 @@ import Card from "./Card.astro";
       <!-- primary nav, hide in mobile -->
       <div class="hidden items-center space-x-10 lg:flex">
         {
-          navData.map((link) => (
+          navLinks.map((link) => (
             <Card href={link.path} classes="px-3 py-1">
               {link.name}
             </Card>
@@ -99,7 +99,7 @@ import Card from "./Card.astro";
       </Card>
     </div>
     {
-      navData.map((link) => (
+      navLinks.map((link) => (
         <a
           href={link.path}
           class="block border-b-2 border-black p-4 hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black md:p-6"

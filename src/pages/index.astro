@@ -1,15 +1,15 @@
 ---
+import { Image } from "@astrojs/image/components";
+import { Icon } from "astro-icon";
 import { CollectionEntry, getCollection } from "astro:content";
 import Card from "../components/Card.astro";
+import CategoryCloud from "../components/CategoryCloud.astro";
+import HoverLink from "../components/HoverLink.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import SideNav from "../components/SideNav.astro";
 import SocialMedia from "../components/SocialMedia.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import filterProjects from "../utils/filterProjects";
-import { Image } from "@astrojs/image/components";
-import CategoryCloud from "../components/CategoryCloud.astro";
-import { Icon } from "astro-icon";
-import HoverLink from "../components/HoverLink.astro";
-import SideNav from "../components/SideNav.astro";
 
 const allProjects = await getCollection("projects");
 const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
@@ -28,17 +28,22 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
         class="min-h-footer flex w-full flex-col items-center justify-center lg:flex-row"
       >
         <div
-          class="flex w-full flex-col items-center lg:ml-20 lg:w-1/2 lg:items-start lg:text-left xl:ml-40"
+          class="flex w-full flex-col items-center lg:mx-16 lg:w-2/3 lg:items-start lg:text-left xl:ml-40"
         >
-          <h2 class="mb-2 text-xl">👋 Hi, my name is...</h2>
-          <h1 class="mb-4 text-3xl font-medium sm:text-4xl xl:text-5xl">
+          <h2 class="mb-8 text-2xl">👋 Hi, my name is...</h2>
+          <h1
+            class="mb-4 text-3xl font-semibold sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl"
+          >
             Ang Wei Feng (Ted).
           </h1>
           <h1
-            class="mb-4 min-h-[80px] text-3xl font-medium sm:text-4xl xl:mb-8 xl:min-h-[96px] xl:text-5xl"
+            class="mb-4 min-h-[80px] text-2xl font-medium sm:text-3xl md:text-4xl lg:text-4xl xl:mb-8 xl:min-h-[96px] xl:text-5xl"
           >
             Let me
-            <span id="tagline" class="font-bold text-green-500"></span>
+            <span
+              id="tagline"
+              class="text-gradient bg-clip-text font-bold text-transparent"
+            ></span>
             for you.
           </h1>
           <div
@@ -205,16 +210,16 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
   var tagline = new Typed("#tagline", {
     strings: [
       "build something exciting",
-      "DROP TABLE in production",
       "build software applications",
+      "DROP TABLE in production",
       "do fullstack development",
       "build a frontend client",
       "build backend services",
-      "deploy to the cloud",
       "maintain legacy code",
+      "deploy to the cloud",
       "create and fix bugs",
-      "do data migration",
       "write documentation",
+      "do data migration",
     ],
     startDelay: 1000,
     typeSpeed: 50,
@@ -222,6 +227,6 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
     loop: true,
     backDelay: 2500,
     cursorChar: "_",
-    shuffle: true,
+    shuffle: false,
   });
 </script>
