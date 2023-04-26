@@ -6,6 +6,7 @@ import SocialMedia from "../../components/SocialMedia.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import filterProjects from "../../utils/filterProjects";
 import slugify from "../../utils/slugify";
+import SideNav from "../../components/SideNav.astro";
 
 export async function getStaticPaths() {
   const allProjects = await getCollection("projects");
@@ -42,48 +43,32 @@ const categorisedProjects = filteredProjects.filter((project: any) =>
 ---
 
 <BaseLayout title={name}>
-  <section class="min-h-footer flex flex-col items-center justify-center">
-    <h1 class="py-10 text-center text-5xl font-bold">
-      Projects using
-      <a class="underline underline-offset-8">{name}</a>
-    </h1>
-    <div class="mb-10 grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:px-16">
-      {
-        categorisedProjects.map((project: any) => (
-          <CategoryCard
-            data={project.data}
-            url={project.slug}
-            classes="max-h-[100px]"
-          />
-        ))
-      }{
-        categorisedProjects.map((project: any) => (
-          <CategoryCard
-            data={project.data}
-            url={project.slug}
-            classes="max-h-[100px]"
-          />
-        ))
-      }{
-        categorisedProjects.map((project: any) => (
-          <CategoryCard
-            data={project.data}
-            url={project.slug}
-            classes="max-h-[100px]"
-          />
-        ))
-      }
+  <section class="min-h-no-footer flex flex-col items-center justify-between">
+    <div>
+      <h1 class="px-4 py-10 text-center text-5xl font-bold">
+        Projects using
+        <a class="underline underline-offset-8">{name}</a>
+      </h1>
+      <div class="mb-10 grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:px-16">
+        {
+          categorisedProjects.map((project: any) => (
+            <CategoryCard
+              data={project.data}
+              url={`/projects/${project.slug}`}
+              classes="max-h-[100px]"
+            />
+          ))
+        }
+      </div>
     </div>
     <div
       class="flex w-full flex-col items-center justify-center border-t-2 border-black py-10"
     >
-      <h2 class="mb-10 max-w-4xl text-center text-4xl">
-        My other skills you might be interested in
+      <h2 class="mb-4 px-4 text-center text-2xl font-medium">
+        Are you interested in my other projects?
       </h2>
       <CategoryCloud filter={category} />
     </div>
   </section>
-  <div class="fixed right-3 top-2/3 hidden flex-col gap-5 lg:flex">
-    <SocialMedia />
-  </div>
+  <SideNav />
 </BaseLayout>

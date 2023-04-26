@@ -43,29 +43,7 @@ const { showCount, filter } = Astro.props;
     Object.entries(sortedCats).map(([key, val]) => {
       if (key !== filter) {
         return (
-          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5">
-            {key} {showCount && ` (${val})`}
-          </Card>
-        );
-      }
-    })
-  }
-  {
-    Object.entries(sortedCats).map(([key, val]) => {
-      if (key !== filter) {
-        return (
-          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5">
-            {key} {showCount && ` (${val})`}
-          </Card>
-        );
-      }
-    })
-  }
-  {
-    Object.entries(sortedCats).map(([key, val]) => {
-      if (key !== filter) {
-        return (
-          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5">
+          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5 font-medium">
             {key} {showCount && ` (${val})`}
           </Card>
         );
