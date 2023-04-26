@@ -1,5 +1,5 @@
 ---
-title: I created this post with Obsidian on iOS
+title: I edited this post with vscode on windows
 date: 2023-04-26
 author: Anna Dixon
 image: { src: "/images/project-5.jpg", alt: "A picture of a coder" }
@@ -18,4 +18,4 @@ Ipsum adipisicing exercitation dolor pariatur labore qui. Culpa cupidatat ea eli
 
 Labore commodo do incididunt amet ad et exercitation magna veniam veniam aute laboris excepteur occaecat Lorem. Fugiat in magna commodo magna nulla eu. Fugiat nulla aliqua sunt duis enim irure aliquip fugiat aliqua Lorem ad tempor incididunt proident incididunt. Labore fugiat tempor esse cillum voluptate culpa anim sunt consequat. Ipsum minim nostrud laborum sit aliquip duis officia consequat est. Fugiat mollit elit nulla. Sit minim est elit labore. Sunt eu pariatur pariatur ut deserunt nulla labore in non sit tempor voluptate ex.
 
-Test test.
+Test test test.
