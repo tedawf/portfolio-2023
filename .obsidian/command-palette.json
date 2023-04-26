@@ -1,0 +1,12 @@
+{
+  "pinned": [
+    "obsidian-git:pull",
+    "obsidian-git:list-changed-files",
+    "obsidian-git:open-diff-view",
+    "obsidian-git:open-history-view",
+    "obsidian-git:open-git-view",
+    "obsidian-git:clone-repo",
+    "obsidian-git:commit-staged-specified-message",
+    "obsidian-git:push2"
+  ]
+}
