@@ -29,7 +29,7 @@ const processedCats = allCategories.reduce(
 const sortedCats = Object.keys(processedCats)
   .sort()
   .reduce((obj: any, key: any) => {
-    obj[key] = processedCats[key];
+    obj[slugify(key)] = processedCats[key];
     return obj;
   }, {});
 
@@ -41,9 +41,13 @@ const { showCount, filter } = Astro.props;
 >
   {
     Object.entries(sortedCats).map(([key, val]) => {
+      console.log(`key:${key}, filter:${filter}`);
       if (key !== filter) {
         return (
-          <Card href={`/category/${slugify(key)}`} classes="px-2 pt-1 pb-1.5 font-medium">
+          <Card
+            href={`/category/${slugify(key)}`}
+            classes="px-2 pt-1 pb-1.5 font-medium"
+          >
             {key} {showCount && ` (${val})`}
           </Card>
         );
