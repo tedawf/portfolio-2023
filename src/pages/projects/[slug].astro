@@ -4,7 +4,10 @@ import filterProjects from "../../utils/filterProjects";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CategoryCloud from "../../components/CategoryCloud.astro";
 import RelatedProjects from "../../components/RelatedProjects.astro";
-import ProjectHeader from "../../components/ProjectHeader.astro";
+import slugify from "../../utils/slugify";
+import formatDate from "../../utils/formatDate";
+import { Image } from "@astrojs/image/components";
+import Card from "../../components/Card.astro";
 
 export async function getStaticPaths() {
   const allProjects = await getCollection("projects");
@@ -43,24 +46,49 @@ const relatedProjects = filteredProjects
 ---
 
 <BaseLayout {title} {description} {image} {project.data}>
-  <ProjectHeader {title} {date} {category} {author} {image} />
-  <div class="main-with-sidebar">
-    <div>
-      <Content />
+  <section class="flex w-full items-center justify-center bg-slate-200">
+    <div
+      class="prose prose-2xl flex flex-col items-center bg-red-200 dark:prose-invert"
+    >
+      <small>
+        <!-- by <a href={`/author/${slugify(author)}/`}>{author}</a> •  -->
+        {formatDate(date)}
+      </small>
+      <small class="flex flex-wrap justify-center gap-4">
+        {
+          category.map((item: string) => (
+            <a href={`/category/${slugify(item)}/`}>{`#${item}`}</a>
+          ))
+        }
+      </small>
+      <h1>{title}</h1>
+
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={1200}
+        height={600}
+        format="webp"
+        fit="cover"
+        quality={80}
+        aspectRatio="5:2"
+      />
+
+      <article class="col-span-3">
+        <Content />
+        <aside class="col-span-2">
+          <h2>Project Categories</h2>
+          <CategoryCloud />
+          {
+            relatedProjects.length > 0 && (
+              <aside>
+                <h2>Related Projects</h2>
+                <RelatedProjects {relatedProjects} />
+              </aside>
+            )
+          }
+        </aside>
+      </article>
     </div>
-    <div>
-      <aside>
-        <h2>Project Categories</h2>
-        <CategoryCloud />
-      </aside>
-      {
-        relatedProjects.length > 0 && (
-          <aside>
-            <h2>Related Projects</h2>
-            <RelatedProjects {relatedProjects} />
-          </aside>
-        )
-      }
-    </div>
-  </div>
+  </section>
 </BaseLayout>

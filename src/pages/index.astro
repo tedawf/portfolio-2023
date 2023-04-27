@@ -141,7 +141,10 @@ const filteredProjects: CollectionEntry<"projects">[] = filterProjects(
       >
         {
           filteredProjects.map((project) => (
-            <ProjectCard data={project.data} url={project.slug} />
+            <ProjectCard
+              data={project.data}
+              url={`/projects/${project.slug}`}
+            />
           ))
         }
         <Card
