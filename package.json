@@ -18,17 +18,18 @@
     "@astrojs/image": "^0.16.6",
     "@astrojs/rss": "^2.3.2",
     "@astrojs/sitemap": "^1.2.2",
-    "@astrojs/tailwind": "^3.1.1",
-    "astro": "^2.3.0",
+    "@astrojs/tailwind": "^3.1.2",
+    "astro": "^2.3.3",
     "astro-icon": "^0.8.0",
     "sharp": "^0.31.3",
-    "tailwindcss": "^3.3.1",
+    "tailwindcss": "^3.3.2",
     "typed.js": "^2.0.15"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
+    "prettier-plugin-astro": "^0.8.0",
     "prettier-plugin-tailwindcss": "^0.2.7"
   }
 }

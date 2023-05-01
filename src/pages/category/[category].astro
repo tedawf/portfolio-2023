@@ -37,7 +37,7 @@ const { name } = Astro.props;
 const allProjects = await getCollection("projects");
 const filteredProjects: CollectionEntry<"projects">[] =
   filterProjects(allProjects);
-const categorisedProjects = filteredProjects.filter((project: any) =>
+const categorisedProjects = filteredProjects.filter((project) =>
   project.data.category.some((cat: string) => slugify(cat) == category)
 );
 ---
@@ -51,7 +51,7 @@ const categorisedProjects = filteredProjects.filter((project: any) =>
       </h1>
       <div class="mb-10 grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:px-16">
         {
-          categorisedProjects.map((project: any) => (
+          categorisedProjects.map((project) => (
             <CategoryCard
               data={project.data}
               url={`/projects/${project.slug}`}

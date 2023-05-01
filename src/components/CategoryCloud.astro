@@ -28,7 +28,8 @@ const processedCats = allCategories.reduce(
 
 const sortedCats = Object.keys(processedCats)
   .sort()
-  .reduce((obj: any, key: any) => {
+  .reduce((obj: any, key) => {
+    console.log(`typeof obj ${typeof obj}`);
     obj[slugify(key)] = processedCats[key];
     return obj;
   }, {});

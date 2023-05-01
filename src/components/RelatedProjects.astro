@@ -7,7 +7,7 @@ const { relatedProjects } = Astro.props;
 
 {
   relatedProjects.map((project: any) => (
-    <div class="post">
+    <div>
       <h3 class="h4">
         <a href={`/projects/${project.slug}`}>{project.data.title}</a>
       </h3>
